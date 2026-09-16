@@ -1,385 +1,342 @@
-# **OpteraAI**
+# OpteraAI
 
-## **A Multi-Agent AI Productivity Platform**
+## An Intelligent Multi-Agent AI Productivity Platform
 
 > One Dashboard. Multiple Intelligent Agents. Automated Workflows.
 
-\---
+---
 
+## 1. Team Details
 
+**Team Name:** YOUR_TEAM_NAME
 
-## **1. Team Details**
-
-**Team Name:** DarkElixir
-
-**Team Leader:** Dharani Vasan V
+**Team Leader:** YOUR_NAME
 
 **Team Members:**
+1. YOUR_NAME - Team Leader
+2. MEMBER_2
+3. MEMBER_3
+4. MEMBER_4
 
-1. DHARANI VASAN V – Team Leader
-2. MAHESWARA PANDIYAN A
-3. SIVAGANESH B
-4. SANTHOSH A P
+---
 
-\---
+## 2. Problem Statement
 
+Students and professionals receive a large amount of information through emails, meetings, internships, hackathons, certifications, scholarships, jobs, and academic opportunities.
 
+Managing this information manually requires users to read and categorize emails, identify important opportunities, prioritize deadlines, extract useful information, download and organize documents, attend and manage meetings, maintain resumes, search for additional information, apply to opportunities, manage calendars and reminders, and track learning and career progress.
 
-## **2. Problem Statement**
+Because these activities are distributed across different platforms, users spend significant time on repetitive tasks and may miss important opportunities or deadlines.
 
-Information is available in abundance through various sources like emails, meetings, internships, hackathons, certification, scholarships, job opportunities, and academics for the students and professionals.
+Existing productivity applications generally address individual tasks rather than providing an integrated system that can understand information and execute the required workflow automatically.
 
-The manual approach to handle all this information involves:
+---
 
-* Reading and organizing emails
-* Identifying important opportunities
-* Determining their priority
-* Gathering relevant information
-* Downloading and organizing documents
-* Handling meetings
-* Maintaining resumes
-* Searching for additional information
-* Applying for opportunities
-* Managing calendars and reminders
-* Tracking learning and career progression
+## 3. Solution Overview
 
-Due to the fragmented approach, users end up spending a lot of time on such activities and can often fail to capture important opportunities or their respective deadlines.
+OpteraAI is a unified multi-agent AI productivity platform that transforms unstructured information into intelligent, actionable workflows.
 
-Most of the productivity applications cater to individual tasks rather than an integrated solution that understands the information and performs all necessary workflows automatically.
+After authenticating through Google OAuth, OpteraAI can synchronize the user's Gmail, classify incoming information, determine priority, extract important details, process documents, manage meetings, build a personal knowledge base, provide career and learning guidance, automate applications, manage calendars, deliver notifications, and generate productivity analytics.
 
-\---
+The platform uses specialized AI agents, with each agent responsible for a specific function while collaborating through APIs and a shared PostgreSQL database.
 
-## **3. Solution Overview**
+All functionality is accessible through a single unified dashboard. Users do not need to switch between separate agent dashboards.
 
-OpteraAI is an integrated multi-agent AI productivity platform that intelligently converts the unstructured information into action items.
+---
 
-Post authentication using Google OAuth, OpteraAI can sync your Gmail account, classify the information coming in, set priorities, extract relevant information, process the documents, handle meetings, build your knowledge base, give you career \& learning advice, automate applications, manage your calendar, notify you and deliver productivity metrics.
-The platform utilizes different AI agents and each AI agent handles a specific task, but works together via API integrations and shared PostgreSQL database.
+## 4. System Workflow
 
-All the functionalities are available via a single unified dashboard and users don’t have to move around different agent dashboards.4
+```text
+                         Google OAuth
+                              |
+                              v
+                     Unified Dashboard
+                              |
+                              v
+                       Watcher Agent
+                              |
+                              v
+                   Classification Agent
+                              |
+                              v
+                       Priority Agent
+                              |
+                              v
+                       Research Agent
+                              |
+              +---------------+---------------+
+              |               |               |
+              v               v               v
+        Search Agent    Document Agent   Meeting Agent
+              |               |               |
+              +---------------+---------------+
+                              |
+                              v
+                       Knowledge Agent
+                              |
+              +---------------+---------------+
+              |               |               |
+              v               v               v
+         Career Agent   Learning Agent    Resume Agent
+              |               |               |
+              +---------------+---------------+
+                              |
+                              v
+                    Application Agent
+                              |
+                              v
+                      Calendar Agent
+                              |
+                              v
+                   Notification Agent
+                              |
+                              v
+                     Analytics Agent
+                              |
+                              v
+                    Supervisor Agent
+```
 
-\---
+---
 
-## **4. System Workflow**
+## 5. AI Agents
 
-&#x20;                        Google OAuth
-|
-v
-Unified Dashboard
-|
-v
-Watcher Agent
-|
-v
-Classification Agent
-|
-v
-Priority Agent
-|
-v
-Research Agent
-|
-+---------------+---------------+
-|               |               |
-v               v               v
-Search Agent    Document Agent   Meeting Agent
-|               |               |
-+---------------+---------------+
-|
-v
-Knowledge Agent
-|
-+---------------+---------------+
-|               |               |
-v               v               v
-Career Agent   Learning Agent    Resume Agent
-|               |               |
-+---------------+---------------+
-|
-v
-Application Agent
-|
-v
-Calendar Agent
-|
-v
-Notification Agent
-|
-v
-Analytics Agent
-|
-v
-Supervisor Agent
-
-\---
-
-## **5. AI Agents**
-
-OpteraAI is made up of 16 agents.
-
-
+OpteraAI consists of 16 specialized AI agents.
 
 | No. | Agent | Primary Responsibility |
+|---|---|---|
+| 1 | Watcher Agent | Monitors and synchronizes Gmail |
+| 2 | Classification Agent | Categorizes incoming emails and information |
+| 3 | Priority Agent | Determines importance and urgency |
+| 4 | Research Agent | Extracts structured information from unstructured content |
+| 5 | Search Agent | Searches and verifies information from online sources |
+| 6 | Document Agent | Downloads, processes, categorizes, and manages documents |
+| 7 | Knowledge Agent | Provides RAG-based personal knowledge retrieval |
+| 8 | Meeting Agent | Automates online meetings and generates transcripts |
+| 9 | Career Agent | Provides personalized career guidance |
+| 10 | Learning Agent | Creates personalized learning roadmaps |
+| 11 | Resume Agent | Manages and optimizes resumes |
+| 12 | Application Agent | Automates supported application forms |
+| 13 | Calendar Agent | Manages events, deadlines, and schedules |
+| 14 | Notification Agent | Delivers intelligent notifications and reminders |
+| 15 | Analytics Agent | Provides productivity and activity analytics |
+| 16 | Supervisor Agent | Monitors agent health and coordinates workflows |
 
-|----:|:------------------|:--------------------------------------------------------|
+---
 
-| 1 | Watcher Agent | Monitor and sync Gmail |
+## 6. Agent Responsibilities
 
-| 2 | Classification Agent | Classify incoming emails and information |
+### 6.1 Watcher Agent
 
-| 3 | Priority Agent | Prioritize emails and information |
-
-| 4 | Research Agent | Parse unstructured info into structured format |
-
-| 5 | Search Agent | Search and validate info on online sources |
-
-| 6 | Document Agent | Download, process, classify and manage docs |
-
-| 7 | Knowledge Agent | Provide RAG personal knowledge search |
-
-| 8 | Meeting Agent | Automate meetings, generate transcripts |
-
-| 9 | Career Agent | Provide career guidance |
-
-| 10 | Learning Agent | Create learning roadmap |
-
-| 11 | Resume Agent | Resume management |
-
-| 12 | Application Agent | Automate applications |
-
-| 13 | Calendar Agent | Manage events, deadlines and schedule |
-
-| 14 | Notification Agent | Intelligent notifications |
-
-| 15 | Analytics Agent | Productivity analytics |
-
-| 16 | Supervisor Agent | Agent health monitoring and workflow coordination |
-
-\---
-
-## **6. Agent Responsibilities**
-
-
-
-### **6.1 Watcher Agent**
-
-Watcher Agent constantly monitors user’s Gmail.
+The Watcher Agent continuously monitors the user's Gmail account.
 
 Responsibilities:
+- Gmail synchronization
+- Detect new emails
+- Retrieve email content
+- Retrieve email metadata
+- Detect attachments
+- Forward new information to downstream agents
 
-* Synchronize Gmail
-* Detect new emails
-* Retrieve email content
-* Retrieve email metadata
-* Detect attachments
-* Pass new information to downstream agents
+### 6.2 Classification Agent
 
-### **6.2 Classification Agent**
+The Classification Agent identifies the type of incoming information.
 
-The Classification Agent classifies the type of information received.
-
-Example classifications:
-
-* Internship
-* Hackathon
-* Job
-* Meeting
-* Certificate
-* Scholarship
-* Event
-* Bill
-* Academic information
+Example categories:
+- Internship
+- Hackathon
+- Job
+- Meeting
+- Certificate
+- Scholarship
+- Event
+- Bill
+- Academic information
 
 Responsibilities:
+- Email classification
+- Category detection
+- Classification confidence
+- Assign appropriate processing workflow
 
-* Email classification
-* Category detection
-* Classification confidence
-* Assignment of processing workflow
+### 6.3 Priority Agent
 
-### **6.3 Priority Agent**
+The Priority Agent determines the urgency and importance of information.
 
-The Priority Agent defines the priority of the information received.
-
-Priority types:
-
-* Emergency
-* High
-* Medium
-* Low
+Priority levels:
+- Emergency
+- High
+- Medium
+- Low
 
 Responsibilities:
+- Deadline analysis
+- Urgency detection
+- Priority assignment
+- Priority scoring
 
-* Deadline analysis
-* Urgency detection
-* Priority classification
-* Priority score
+### 6.4 Research Agent
 
-### **6.4 Research Agent**
+The Research Agent converts unstructured information into structured information.
 
-The Research Agent transforms unstructured data into structured information.
+It extracts:
+- Deadlines
+- Tasks
+- Meeting details
+- Application links
+- Contacts
+- Internship information
+- Hackathon information
+- Certificate information
+- Important instructions
+- Summaries
 
-Information retrieved includes:
+### 6.5 Search Agent
 
-* Deadlines
-* Tasks
-* Meetings
-* Application links
-* Contacts
-* Internship information
-* Hackathon information
-* Certificate information
-* Instructions
-* Summaries
-
-### **6.5 Search Agent**
-
-The Search Agent searches for information if there is not enough information provided.
+The Search Agent retrieves additional information when available information is incomplete.
 
 Responsibilities:
+- Search official websites
+- Verify information
+- Find missing details
+- Retrieve relevant URLs
+- Find downloadable resources
+- Provide additional context to the Research Agent
 
-* Searches on official websites
-* Validates information
-* Searches for missing information
-* Finds URLs
-* Downloads resources
-* Gives extra information to the Research Agent
+### 6.6 Document Agent
 
-### **6.6 Document Agent**
-
-The Document Agent deals with documents used by the platform.
+The Document Agent manages documents used throughout the platform.
 
 Responsibilities:
+- Download PDFs
+- Download certificates
+- Process email attachments
+- Extract text from documents
+- Process PDF and DOCX files
+- Categorize documents
+- Store document metadata
+- Detect duplicate documents
+- Maintain document history
+- Provide documents to other agents
 
-* Downloads PDFs
-* Downloads certificates
-* Downloads and processes email attachments
-* Extracts text from documents
-* Processes PDF and DOCX files
-* Documents categorization
-* Stores document metadata
-* Duplicate document detection
-* Keeps track of documents
-* Provides documents to other agents
+Primary consumers:
+- Knowledge Agent
+- Research Agent
+- Career Agent
+- Application Agent
+- Resume Agent
 
-Main consumers:
+### 6.7 Knowledge Agent
 
-* Knowledge Agent
-* Research Agent
-* Career Agent
-* Application Agent
-* Resume Agent
-
-### **6.7 Knowledge Agent**
-
-The Knowledge Agent provides a personal RAG-based knowledge base.
+The Knowledge Agent provides a personal RAG-based knowledge system.
 
 RAG pipeline:
 
 ```text
 Documents / Information
-|
-v
-Text Extraction
-|
-v
-Vector Embeddings
-|
-v
-ChromaDB
-|
-v
-User Query
-|
-v
-Query Embedding
-|
-v
-Cosine Similarity
-|
-v
-Top-K Results
-|
-v
-Groq API
-|
-v
-AI Response
+          |
+          v
+     Text Extraction
+          |
+          v
+    Vector Embeddings
+          |
+          v
+       ChromaDB
+          |
+          v
+       User Query
+          |
+          v
+    Query Embedding
+          |
+          v
+   Cosine Similarity
+          |
+          v
+       Top-K Results
+          |
+          v
+       Groq API
+          |
+          v
+      AI Response
 ```
 
 Responsibilities:
-
-* Vector generation
-* Vector storage
-* Semantic search
-* Retrieval of relevant information
-* Answering queries contextually
-* Providing sources
+- Generate embeddings
+- Store vectors
+- Perform semantic search
+- Retrieve relevant information
+- Generate contextual answers
+- Provide source references
 
 ### 6.8 Meeting Agent
 
-Meeting Agent is used for managing meeting workflows.
-Tasks performed by this agent:
+The Meeting Agent automates online meeting workflows.
 
-* Processing meeting links;
-* Participating in supported online meetings;
-* Recording meeting audio;
-* Creating transcripts;
-* Extracting actions;
-* Storing meeting data;
-* Generating meeting summaries.
+Responsibilities:
+- Process meeting links
+- Join supported online meetings
+- Record meeting audio
+- Generate transcripts
+- Extract action items
+- Store meeting information
+- Provide meeting summaries
 
 ### 6.9 Career Agent
 
-Career Agent helps users in their careers.
-Tasks performed by this agent:
+The Career Agent provides personalized career assistance.
 
-* Resume analysis;
-* Recommending career paths;
-* Finding skills gaps;
-* Recommending jobs;
-* Recommending internships;
-* Recommending certifications;
-* Career roadmap creation.
+Responsibilities:
+- Resume analysis
+- Career-path recommendations
+- Skill-gap identification
+- Job recommendations
+- Internship recommendations
+- Certification recommendations
+- Career roadmap generation
 
 ### 6.10 Learning Agent
 
-Learning Agent creates personalized learning plans for users.
-Tasks performed by this agent:
+The Learning Agent creates personalized learning plans.
 
-* Planning the learning process;
-* Recommending courses;
-* Recommending projects;
-* Recommending certifications;
-* Planning skills development.
+Responsibilities:
+- Learning roadmaps
+- Course recommendations
+- Project recommendations
+- Certification recommendations
+- Skill development plans
+- Learning progress tracking
 
 ### 6.11 Resume Agent
 
-Resume Agent manages users' resumes.
-Tasks performed by this agent:
+The Resume Agent manages and optimizes user resumes.
 
-* Managing resumes masterly;
-* Resumes updating;
-* Versions of resumes;
-* Making customized resumes;
-* Optimizing resumes for ATS;
-* Resumes creation;
-* Resumes downloading.
+Responsibilities:
+- Master resume management
+- Resume updates
+- Resume versioning
+- Customized resumes
+- ATS-oriented optimization
+- Resume generation
+- Resume downloads
 
 ### 6.12 Application Agent
 
-This agent works with supported online applications.
-Supported applications:
+The Application Agent automates supported online application workflows.
 
-* Google Forms;
-* Microsoft Forms.
+Supported platforms:
+- Google Forms
+- Microsoft Forms
+
 Workflow:
 
 ```text
 Opportunity
      |
      v
-Application link
+Application Link
      |
      v
 Application Agent
@@ -388,95 +345,91 @@ Application Agent
 User Profile + Resume
      |
      v
-Detect form fields
+Detect Form Fields
      |
      v
-Fill required fields
+Fill Required Fields
      |
      v
-Upload documents
+Upload Documents
      |
      v
-Submit application
+Submit Application
      |
      v
-Store application status
+Store Application Status
 ```
 
-This agent uses the data that is already stored in the user's profile and resume instead of making users fill the same data every time.
+The agent uses information already available in the user's profile and resume instead of requiring users to repeatedly enter the same information.
 
 ### 6.13 Calendar Agent
 
-Calendar Agent is responsible for scheduling and tracking deadlines.
-Tasks performed by this agent:
+The Calendar Agent manages scheduling and deadlines.
 
-* Creating calendar events;
-* Scheduling meetings;
-* Tracking deadlines;
-* Detecting scheduling conflicts;
-* Scheduling reminders;
-* Scheduling notifications;
-* Updating events.
+Responsibilities:
+- Create calendar events
+- Schedule meetings
+- Track deadlines
+- Detect scheduling conflicts
+- Create reminder schedules
+- Generate notification jobs
+- Update events
 
 ### 6.14 Notification Agent
 
-Notification Agent works with scheduled notifications.
+The Notification Agent handles scheduled notifications.
 
-Functionality:
-
-* Browser notifications
-* Dashboard notifications
-* Custom notification sounds
-* Snooze
-* Quiet hours
-* Notification history
-* Tracking delivery
-* Notification preferences
+Features:
+- Browser notifications
+- Dashboard notifications
+- Custom notification sounds
+- Snooze
+- Quiet hours
+- Notification history
+- Delivery tracking
+- User notification preferences
 
 ### 6.15 Analytics Agent
 
-Analytics Agent gives productivity insights.
+The Analytics Agent provides productivity insights.
 
-Monitors:
-
-* Number of emails processed
-* Opportunities found
-* Number of applications made
-* Meetings
-* Learning process
-* Notifications
-* Agents activity
+Tracks:
+- Emails processed
+- Opportunities discovered
+- Applications submitted
+- Meetings
+- Learning progress
+- Notifications
+- Agent activity
 
 Provides:
-
-* Productivity dashboards
-* Reports
-* Statistics
-* Insights of productivity
+- Productivity dashboards
+- Reports
+- Statistics
+- Progress insights
 
 ### 6.16 Supervisor Agent
 
-Supervisor Agent monitors the whole multi-agent ecosystem.
+The Supervisor Agent monitors the overall multi-agent ecosystem.
 
-Responsible for:
+Responsibilities:
+- Monitor agent health
+- Track agent status
+- Detect failures
+- Monitor workflows
+- Track errors
+- Monitor service performance
+- Coordinate agent execution
 
-* Agents health monitoring
-* Agents status monitoring
-* Failures detection
-* Workflow monitoring
-* Errors tracking
-* Service performance monitoring
-* Agents coordination in their execution
+---
 
-\---
+## 7. Unified Dashboard
 
-## 7\. Unified Dashboard
+OpteraAI provides a single unified dashboard for all agent functionality.
 
-OpteraAI provides a unified dashboard which integrates all agents functionality.
+Users never need to open separate agent dashboards.
 
-User will never have to visit different agents dashboards.
-
-Modules of unified dashboard:
+Dashboard modules:
 
 1. Home
 2. Inbox
@@ -494,29 +447,27 @@ Modules of unified dashboard:
 14. AI Agents
 15. Settings
 
-Unified dashboard provides access to:
+The unified dashboard provides:
 
-* Gmail activities
-* Email classification
-* Priority information
-* Information about extracted opportunities
-* Document management
-* Meetings information
-* Personal knowledge search
-* Career recommendations
-* Learning roadmaps
-* Resume management
-* Application automation
-* Calendar events
-* Notifications
-* Productivity analytics
-* Agent health monitoring
+- Gmail activity
+- Email classifications
+- Priority information
+- Extracted opportunities
+- Document management
+- Meeting information
+- Personal knowledge search
+- Career recommendations
+- Learning roadmaps
+- Resume management
+- Application automation
+- Calendar events
+- Notifications
+- Productivity analytics
+- Agent health monitoring
 
-\---
+---
 
-## 8\. Example End-to-End Workflow
-
-Upon the receipt of the internship email:
+## 8. Example End-to-End Workflow
 
 When an internship email arrives:
 
@@ -577,81 +528,79 @@ Verify Details       Process Files
        Analytics Agent
 ```
 
-\---
+---
 
-## 9\. Technology Stack
+## 9. Technology Stack
 
 ### 9.1 Frontend
 
-* React.js
-* Vite
-* TypeScript
-* Tailwind CSS
-* shadcn/ui
-* Lucide React
-* Framer Motion
-* Recharts
-* Zustand
+- React.js
+- Vite
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Lucide React
+- Framer Motion
+- Recharts
+- Zustand
 
 ### 9.2 Backend
 
-* Python
-* FastAPI
-* Pydantic
-* SQLAlchemy
-* Uvicorn
-* APScheduler
+- Python
+- FastAPI
+- Pydantic
+- SQLAlchemy
+- Uvicorn
+- APScheduler
 
 ### 9.3 Database
 
-* PostgreSQL
-* Render PostgreSQL
+- PostgreSQL
+- Render PostgreSQL
 
-### 9.4 AI \& RAG
+### 9.4 AI and RAG
 
-* Groq API
-* Sentence Transformers
-* Vector Embeddings
-* Retrieval-Augmented Generation
-* Cosine Similarity
-* ChromaDB
+- Groq API
+- Sentence Transformers
+- Vector Embeddings
+- Retrieval-Augmented Generation
+- Cosine Similarity
+- ChromaDB
 
 ### 9.5 Automation
 
-* Playwright
+- Playwright
 
-### 9.6 Meetings Processing
+### 9.6 Meeting Processing
 
-* Whisper
-* FFmpeg
-* Playwright
+- Whisper
+- FFmpeg
+- Playwright
 
 ### 9.7 Document Processing
 
-* PyMuPDF
-* pdfplumber
-* python-docx
-* OCR when needed
+- PyMuPDF
+- pdfplumber
+- python-docx
+- OCR where required
 
-### 9.8 Authentication \& Integration
+### 9.8 Authentication and Integration
 
-* Google OAuth
-* JWT
-* Gmail API
+- Google OAuth
+- JWT
+- Gmail API
 
 ### 9.9 Deployment
 
-* Render
+- Render
 
-\---
+---
 
+## 10. Authentication
 
+OpteraAI uses Google OAuth authentication.
 
-## **10. Authentication**
-
-OpteraAI employs Google OAuth for its authentication process.
-
-Login Process:
+Login workflow:
 
 ```text
 Google OAuth
@@ -660,7 +609,7 @@ Google OAuth
 User Authentication
      |
      v
-Create / Get User
+Create / Retrieve User
      |
      v
 Session / JWT
@@ -669,176 +618,79 @@ Session / JWT
 Unified Dashboard
 ```
 
-Once authentication succeeds, the user will be redirected to the unified dashboard page.
+After successful authentication, the user is taken directly to the unified dashboard.
 
-\---
+---
 
-## **11. Database**
+## 11. Database
 
-PostgreSQL acts as the primary relational database for the application's data storage.
+PostgreSQL is used as the central relational database for application data.
 
-This database will manage data related to:
+The database manages information such as:
 
-* Users
-* Gmail accounts
-* Emails
-* Classifications
-* Priorities
-* Research findings
-* Documents
-* Meetings
-* Resumes
-* Applications
-* Calendar events
-* Notification jobs
-* Notification history
-* Careers
-* Learning
-* Analytics
+- Users
+- Gmail accounts
+- Emails
+- Classifications
+- Priorities
+- Research results
+- Documents
+- Meetings
+- Resumes
+- Applications
+- Calendar events
+- Notification jobs
+- Notification history
+- Career data
+- Learning progress
+- Analytics
 
-The vector knowledge layer uses a separate system called ChromaDB.
+The vector knowledge layer is handled separately using ChromaDB.
 
-\---
+---
 
-## **12. Project Presentation and Demo**
+## 12. Live Demonstration
 
-**Live Demo:** YOUR\_LIVE\_DEMO\_LINK
+**Live Demo:** YOUR_LIVE_DEMO_LINK
 
-**Project Presentation (PPT):** https://drive.google.com/drive/folders/1jCI23z\_xEA2\_DDKTJCrwOWrJfKlKp4aN?usp=sharing
+---
 
-\---
+## 13. Setup Instructions
 
-## **13. Setup Instructions**
+Setup instructions will be added by the team.
 
-### **13.1 Pre-requisites**
+This section will include:
 
-Before starting, please make sure you have the following installed on your machine:
+- Repository cloning
+- Environment variable configuration
+- Google OAuth configuration
+- PostgreSQL configuration
+- Backend installation
+- Frontend installation
+- AI API configuration
+- ChromaDB configuration
+- Playwright installation
+- Local development
+- Production deployment
 
-* Python 3.10 and above
-* Node.js 18 and above for Vite React frontend
-* PostgreSQL, local or cloud-based
+---
 
-### **13.2 Backend (Microservices) Setup**
+## 14. Team Members
 
-#### **Step 1: Clone Repository**
+| Role | Name |
+|---|---|
+| Team Leader | YOUR_NAME |
+| Team Member | MEMBER_2 |
+| Team Member | MEMBER_3 |
+| Team Member | MEMBER_4 |
 
-```bash
-git clone https://github.com/DharaniVasanV/OpteraAI-HackMatrix2026
-cd AgentOS
-```
+---
 
-#### **Step 2: Setup Python virtual environment**
+## 15. Project Impact
 
-For Windows,
+OpteraAI aims to reduce the repetitive work required to manage academic and professional opportunities.
 
-```powershell
-python -m venv .venv
-.venv\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Scripts\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\activate
-```
-
-For Mac/Linux,
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-#### **Step 3: Install python dependencies**
-
-```bash
-pip install -r requirements.txt
-```
-
-#### **Step 4: Install Playwright browser binaries**
-
-The Playwright Chromium is required for the Meeting and Filler agents.
-
-```bash
-playwright install chromium
-```
-
-#### **Step 5: Setup environment variables**
-
-Create a new `.env` file from the `.env.example` or copy the `.env.example` to `.env`.
-
-```bash
-cp .env.example .
-```
-
-Ensure you fill out the critical variables in `.env`:
-
-```env
-DATABASE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_URL=postgresql+asyncpg://<user>:<password>@localhost:5432/<db\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_name>
-
-GROQ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_API\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_KEY=your\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_groq\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_api\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_key
-GROQ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_API\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_KEY2=your\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_groq\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_api\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_key\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_2
-GROQ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_API\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_KEY3=your\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_groq\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_api\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_key\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_3
-
-GEMINI\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_API\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_KEY=your\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_gemini\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_api\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_key
-
-SMTP\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_USER=your\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_smtp\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_user
-SMTP\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_PASSWORD=your\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_smtp\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_password
-
-GROQ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_API\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_KEY2, GROQ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_API\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_KEY3, and other Groq keys should be defined for automatic key rotation when available from the application.
-Gmail OAuth keys and SMTP credentials should also be defined based on the environmental settings of the project.
-### 13.3 Frontend Setup
-Enter the frontend folder and install the Node modules:
-```bash
-cd frontend
-npm install
-cd ..
-```
-
-### 13.4 Platform Execution
-
-OpteraAI makes use of the unified startup script which enables the microservices, unified proxy, and React frontend to start up together.
-Windows PowerShell:
-
-```powershell
-.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\start\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_all.ps1
-```
-
-Mac/Linux:
-
-```bash
-chmod +x start\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_all.sh
-./start\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_all.sh
-```
-
-### 13.5 Application Access
-
-After the startup script has started all services, you will have to access the applications via the following URLs:
-
-* Frontend Dashboard: http://localhost:3000
-* Central API Gateway: http://127.0.0.1:9000/docs
-* Database Logs/Traces: View the log output on the console where each microservice is reporting its status.
-
-\---
-
-## 14\. Team Members
-
-|Role|Name|
-|-|-|
-|Team Lead|DHARANI VASAN V|
-|Team Member|MAHESWARA PANDIYAN A|
-|Team Member|SIVAGANESH B|
-|Team Member|SANTHOSH A P|
-
-\---
-
-## 15\. Impact of Project
-
-OpteraAI seeks to eliminate the repetitive tasks involved in managing opportunities for education and profession.
-
-Traditional Workflow:
-
-```text
-
-Read -> Understand -> Prioritize -> Organize -> Apply -> Schedule -> Remember
-
-```
-
-OpteraAI Workflow:
+Traditional workflow:
 
 ```text
 Read -> Understand -> Prioritize -> Organize -> Apply -> Schedule -> Remember
@@ -871,75 +723,70 @@ Notify
 Track
 ```
 
-This will help users devote lesser time on administrative tasks and more on education, career, and productive activities.
+This helps users spend less time on administrative work and more time on learning, career development, and meaningful work.
 
-\---
+---
 
-## 16\. Future Scope
+## 16. Future Scope
 
-Future improvements that could be considered include:
+Potential future improvements include:
 
-1. Mobile Application
-2. More email providers
-3. More meeting platforms
+1. Mobile application
+2. Additional email providers
+3. Additional meeting platforms
 4. More application platforms
-5. Agent Orchestration
-6. Mobile Push Notifications
-7. Multilingual Support
-8. Enterprise Edition
-9. Advance Career Matching
-10. Advance Workflow Automation
+5. Advanced agent orchestration
+6. Mobile push notifications
+7. Multi-language support
+8. Enterprise deployment
+9. Advanced career matching
+10. Personalized workflow automation
 
-\---
+---
 
-## 17\. License
+## 17. License
 
-Include license of the project here.
+Add the project's license here.
 
 Example:
 
 ```text
-
 MIT License
-
 ```
 
-\---
+---
 
-## 18\. Acknowledgements
+## 18. Acknowledgements
 
-Open source tools and services used for development of the project include:
+OpteraAI is built using open-source technologies and services including:
 
-* Python
-* FastAPI
-* React
-* PostgreSQL
-* Playwright
-* ChromaDB
-* Sentence Transformers
-* Whisper
-* Groq API
-* Google APIs
+- Python
+- FastAPI
+- React
+- PostgreSQL
+- Playwright
+- ChromaDB
+- Sentence Transformers
+- Whisper
+- Groq API
+- Google APIs
 
-\---
+---
 
-## 19\. Project Objective
+## 19. Project Objective
 
-Objective of OpteraAI is to convert scattered academic and professional information into automated workflows.
+The primary objective of OpteraAI is to transform scattered academic and professional information into automated, actionable workflows.
 
-The platform brings together AI agents, automation, information extraction, document processing, RAG based knowledge retrieval, scheduling, application automation and analytics in one productivity platform.
+The platform combines specialized AI agents, automation, information extraction, document processing, RAG-based knowledge retrieval, scheduling, application automation, and analytics into one unified productivity platform.
 
-\---
+---
 
-## 20\. Conclusion
+## 20. Conclusion
 
-OpteraAI is a unified platform for management of academic and professional activities using AI agents.
+OpteraAI provides a unified approach to managing academic and professional activities through specialized AI agents. By connecting email intelligence, opportunity discovery, document processing, meetings, knowledge management, career development, learning, applications, scheduling, notifications, and analytics, the platform reduces repetitive work and enables users to manage their workflows from a single interface.
 
-Combining email intelligence, opportunity discovery, document processing, meetings, knowledge management, career development, learning, applications, scheduling, notifications and analytics, the platform allows users to manage workflows from one interface.
-
-\---
+---
 
 # OpteraAI
 
-One Dashboard. Multiple Intelligent Agents. Automated Workflows.
-
+**One Dashboard. Multiple Intelligent Agents. Automated Workflows.**
