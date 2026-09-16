@@ -48,9 +48,9 @@ async def create_notification(payload: Dict[str, Any]):
 
 
 @router.get("/notifications")
-async def list_notifications():
+async def list_notifications(user_email: str = None):
     """Retrieve all notification history."""
-    return await notification_service.get_all_notifications()
+    return await notification_service.get_all_notifications(user_email=user_email)
 
 
 @router.get("/notifications/{notification_id}")

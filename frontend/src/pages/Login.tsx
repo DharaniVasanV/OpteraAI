@@ -57,15 +57,15 @@ export default function Login() {
   return (
     <>
       <div className="text-center">
-        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-2 tracking-tight">Welcome Back</h2>
-        <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">Sign in to access your OpteraAI dashboard</p>
+        <h2 className="text-3xl font-extrabold text-[#111827] dark:text-[#F5F5F5] mb-2 tracking-tight">Welcome Back</h2>
+        <p className="text-[#64748B] dark:text-[#A1A1AA] text-sm font-medium">Sign in to access your OpteraAI dashboard</p>
       </div>
 
       {error && <div className="bg-[#C5192D]/10 border border-[#C5192D]/20 text-[#C5192D] text-sm font-semibold p-4 rounded-xl shadow-sm">{error}</div>}
 
       <a 
         href="http://localhost:9000/gmail/oauth"
-        className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm text-gray-900 dark:text-gray-100 hover:bg-slate-50 dark:bg-slate-900 hover:shadow-md font-bold py-3 px-4 rounded-xl flex justify-center items-center transition-all mb-8 mt-4"
+        className="w-full bg-white dark:bg-[#1A1A1A] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm text-[#111827] dark:text-[#F5F5F5] hover:bg-[#F4F7FB] dark:hover:bg-[#1F2228] hover:shadow-md font-bold py-3 px-4 rounded-xl flex justify-center items-center transition-all mb-8 mt-4"
       >
         <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
             <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -78,38 +78,38 @@ export default function Login() {
 
       <div className="relative mb-8">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-slate-200 dark:border-slate-700"></div>
+          <div className="w-full border-t border-[#DCE3ED] dark:border-[#2A2D33]"></div>
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-white dark:bg-slate-800 text-slate-400 dark:text-slate-400 font-bold">Or continue with email</span>
+          <span className="px-4 bg-white dark:bg-[#18181B] text-[#94A3B8] dark:text-[#71717A] font-bold">Or continue with email</span>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block text-sm font-bold text-gray-600 dark:text-gray-300 mb-1.5 ml-1">Email</label>
+          <label className="block text-sm font-bold text-[#64748B] dark:text-[#A1A1AA] mb-1.5 ml-1">Email</label>
           <input 
             type="email" 
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-[#0066FF]/20 focus:border-[#0066FF]/50 focus:bg-white dark:bg-slate-800 outline-none transition-all shadow-inner font-medium text-base"
+            className="w-full bg-[#F4F7FB] dark:bg-[#1A1A1A] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-xl px-4 py-3 text-[#111827] dark:text-[#F5F5F5] focus:ring-2 focus:ring-[#2563FF]/30 focus:border-[#2563FF]/60 outline-none transition-all font-medium text-base placeholder:text-[#94A3B8] dark:placeholder:text-[#71717A]"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-bold text-gray-600 dark:text-gray-300 mb-1.5 ml-1">Password</label>
+          <label className="block text-sm font-bold text-[#64748B] dark:text-[#A1A1AA] mb-1.5 ml-1">Password</label>
           <input 
             type="password" 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-[#0066FF]/20 focus:border-[#0066FF]/50 focus:bg-white dark:bg-slate-800 outline-none transition-all shadow-inner font-medium text-base"
+            className="w-full bg-[#F4F7FB] dark:bg-[#1A1A1A] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-xl px-4 py-3 text-[#111827] dark:text-[#F5F5F5] focus:ring-2 focus:ring-[#2563FF]/30 focus:border-[#2563FF]/60 outline-none transition-all font-medium text-base placeholder:text-[#94A3B8] dark:placeholder:text-[#71717A]"
             required
           />
         </div>
         
         <button 
           type="submit"
-          className="w-full btn-primary-custom py-3.5 px-4 rounded-xl flex justify-center items-center transition-all mt-2 text-base font-extrabold shadow-lg"
+          className="w-full bg-[#2563FF] hover:bg-[#1D4ED8] text-white py-3.5 px-4 rounded-xl flex justify-center items-center transition-all mt-2 text-base font-extrabold shadow-lg shadow-[#2563FF]/30"
         >
           <LogIn className="w-5 h-5 mr-3" />
           Sign In
@@ -117,8 +117,8 @@ export default function Login() {
       </form>
 
       <div className="text-center mt-8">
-        <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
-          Don't have an account? <Link to="/signup" className="text-[#0066FF] font-bold hover:underline">Create one</Link>
+        <p className="text-sm font-medium text-[#64748B] dark:text-[#A1A1AA]">
+          Don't have an account? <Link to="/signup" className="text-[#2563FF] font-bold hover:underline">Create one</Link>
         </p>
       </div>
     </>

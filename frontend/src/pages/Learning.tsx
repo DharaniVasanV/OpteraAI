@@ -55,26 +55,26 @@ export default function Learning() {
   };
 
   return (
-    <div className="p-8 text-gray-900 dark:text-gray-100 max-w-7xl mx-auto h-full overflow-y-auto space-y-8">
+    <div className="p-8 text-[#111827] dark:text-[#F5F5F5] max-w-7xl mx-auto h-full overflow-y-auto space-y-8">
       <div className="flex items-center gap-3">
         <BookOpen className="w-10 h-10 text-pink-600" />
         <div>
            <h1 className="text-4xl font-extrabold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
              Learning Mentor
            </h1>
-           <p className="text-gray-600 dark:text-gray-300 font-medium">Personalized 12-step AI curriculums to close skill gaps.</p>
+           <p className="text-[#64748B] dark:text-[#A1A1AA] font-medium">Personalized 12-step AI curriculums to close skill gaps.</p>
         </div>
       </div>
 
-      <div className="glass-card p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-xl flex items-end gap-4">
+      <div className="glass-card p-6 rounded-xl border border-[#DCE3ED] dark:border-[#2A2D33] shadow-xl flex items-end gap-4">
          <div className="flex-1">
-            <label className="block text-sm font-bold text-gray-900 dark:text-gray-100 font-bold mb-2">Manual Generate Learning Path 💡</label>
+            <label className="block text-sm font-bold text-[#111827] dark:text-[#F5F5F5] font-bold mb-2">Manual Generate Learning Path 💡</label>
             <input 
               type="text"
               value={manualInput}
               onChange={(e) => setManualInput(e.target.value)}
               placeholder="e.g. Master Rust for Web3 backend development..."
-              className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-pink-500 transition-colors"
+              className="w-full bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm border border-[#DCE3ED] dark:border-[#2A2D33] rounded-lg p-3 text-[#111827] dark:text-[#F5F5F5] focus:outline-none focus:border-pink-500 transition-colors"
               disabled={isGenerating}
             />
          </div>
@@ -91,7 +91,7 @@ export default function Learning() {
       <div className="space-y-6">
          {loading ? (
            <div className="animate-pulse space-y-4">
-              <div className="h-64 bg-slate-100 dark:bg-slate-800 rounded-xl"></div>
+              <div className="h-64 bg-[#EFF6FF] dark:bg-[#18181B] rounded-xl"></div>
            </div>
          ) : plans.length > 0 ? (
            plans.map((plan, i) => {
@@ -117,17 +117,17 @@ export default function Learning() {
               const difficulty = data.current_level || 'Intermediate';
 
               return (
-                <div key={plan.plan_id || i} className="glass-card rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700/50">
-                  <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm/50 p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-start flex-wrap gap-4">
+                <div key={plan.plan_id || i} className="glass-card rounded-xl overflow-hidden border border-[#DCE3ED] dark:border-[#2A2D33]/50">
+                  <div className="bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm/50 p-6 border-b border-[#DCE3ED] dark:border-[#2A2D33] flex justify-between items-start flex-wrap gap-4">
                      <div>
                        <h2 className="text-2xl font-bold mb-2 capitalize">{data.career_goal || 'Custom Learning Path'}</h2>
-                       <p className="text-gray-600 dark:text-gray-300 font-medium max-w-2xl text-sm leading-relaxed">{data.motivation || 'Focus on your daily tasks to achieve your learning goal.'}</p>
+                       <p className="text-[#64748B] dark:text-[#A1A1AA] font-medium max-w-2xl text-sm leading-relaxed">{data.motivation || 'Focus on your daily tasks to achieve your learning goal.'}</p>
                      </div>
                      <div className="flex gap-3">
                        <span className={`px-3 py-1 rounded text-xs uppercase font-bold border ${getDifficultyColor(difficulty)}`}>
                           {difficulty}
                        </span>
-                       <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100 font-bold rounded text-xs uppercase font-bold border border-slate-200 dark:border-slate-700">
+                       <span className="px-3 py-1 bg-[#EFF6FF] dark:bg-[#18181B] text-[#111827] dark:text-[#F5F5F5] font-bold rounded text-xs uppercase font-bold border border-[#DCE3ED] dark:border-[#2A2D33]">
                           {curriculum.length} STEPS
                        </span>
                      </div>
@@ -136,25 +136,25 @@ export default function Learning() {
                   <div className="p-6">
                      <div className="mb-4">
                         <div className="flex justify-between text-sm mb-1 font-bold">
-                           <span className="text-gray-600 dark:text-gray-300 font-medium">Mastery Progress</span>
+                           <span className="text-[#64748B] dark:text-[#A1A1AA] font-medium">Mastery Progress</span>
                            <span className="text-pink-600">{progress}%</span>
                         </div>
-                        <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                        <div className="h-2 w-full bg-[#EFF6FF] dark:bg-[#18181B] rounded-full overflow-hidden">
                            <div className="h-full bg-gradient-to-r from-pink-500 to-rose-500 transition-all duration-1000" style={{ width: `${progress}%`}}></div>
                         </div>
                      </div>
 
                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
                         {curriculum.map((mod: any, idx: number) => (
-                           <div key={idx} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm border border-slate-200 dark:border-slate-700 p-4 rounded-lg hover:border-pink-500/30 transition-colors relative group">
-                              <span className="absolute -top-3 -left-3 w-8 h-8 bg-slate-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300 font-medium group-hover:bg-pink-600 group-hover:text-white rounded-full flex items-center justify-center font-bold text-sm transition-colors border border-slate-200 dark:border-slate-700 shadow-sm">
+                           <div key={idx} className="bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm border border-[#DCE3ED] dark:border-[#2A2D33] p-4 rounded-lg hover:border-pink-500/30 transition-colors relative group">
+                              <span className="absolute -top-3 -left-3 w-8 h-8 bg-[#EFF6FF] dark:bg-[#18181B] text-[#64748B] dark:text-[#A1A1AA] font-medium group-hover:bg-pink-600 group-hover:text-white rounded-full flex items-center justify-center font-bold text-sm transition-colors border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm">
                                 {mod.step_number || idx + 1}
                               </span>
                               <div className="ml-3">
-                                 <h4 className="font-bold text-gray-900 dark:text-gray-100 mb-1 leading-tight">{mod.topic}</h4>
-                                 <p className="text-xs text-slate-400 dark:text-slate-400 font-semibold line-clamp-2">{mod.description}</p>
+                                 <h4 className="font-bold text-[#111827] dark:text-[#F5F5F5] mb-1 leading-tight">{mod.topic}</h4>
+                                 <p className="text-xs text-[#94A3B8] dark:text-[#71717A] font-semibold line-clamp-2">{mod.description}</p>
                                  <div className="mt-3 flex justify-between items-center">
-                                    <span className="text-[10px] uppercase font-bold text-slate-600 tracking-wider">
+                                    <span className="text-[10px] uppercase font-bold text-[#64748B] tracking-wider">
                                        {mod.duration_hours} HRS
                                     </span>
                                     <button className="text-pink-600 hover:text-pink-700 transition-colors p-1 group/btn">
@@ -170,7 +170,7 @@ export default function Learning() {
               )
            })
          ) : (
-           <div className="glass-card p-12 text-center text-slate-400 dark:text-slate-400 font-semibold rounded-xl border border-dashed border-slate-200 dark:border-slate-700">
+           <div className="glass-card p-12 text-center text-[#94A3B8] dark:text-[#71717A] font-semibold rounded-xl border border-dashed border-[#DCE3ED] dark:border-[#2A2D33]">
              <BookOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
              <p>No learning curriculums found.</p>
              <p className="text-sm mt-2">Generate one above or analyze your career profile.</p>

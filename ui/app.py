@@ -388,6 +388,33 @@ async def get_analytics_summary(period: str = Query("week"), current_user: User 
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Analytics agent unavailable: {e}")
 
+@app.get("/api/analytics/activity-trend")
+async def get_analytics_activity_trend(period: str = Query("week"), current_user: User = Depends(get_current_user)):
+    """Productivity Activity trend data — daily activity per series for the line chart."""
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            resp = await client.get(f"http://127.0.0.1:8013/api/analytics/activity-trend?user_id={current_user.email}&period={period}")
+        if resp.status_code == 200:
+            return resp.json()
+        raise HTTPException(status_code=502, detail=f"Analytics returned {resp.status_code}")
+    except HTTPException: raise
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Analytics agent unavailable: {e}")
+
+@app.get("/api/analytics/agent-usage")
+async def get_analytics_agent_usage(period: str = Query("week"), current_user: User = Depends(get_current_user)):
+    """Agent usage bar chart data — tasks processed per agent."""
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            resp = await client.get(f"http://127.0.0.1:8013/api/analytics/agent-usage?user_id={current_user.email}&period={period}")
+        if resp.status_code == 200:
+            return resp.json()
+        raise HTTPException(status_code=502, detail=f"Analytics returned {resp.status_code}")
+    except HTTPException: raise
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Analytics agent unavailable: {e}")
+
+
 @app.get("/api/home/stats")
 async def get_home_stats(current_user: User = Depends(get_current_user)):
     """Real-time home dashboard stats from PostgreSQL."""

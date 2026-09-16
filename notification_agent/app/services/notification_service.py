@@ -342,9 +342,12 @@ async def get_all_jobs() -> List[Dict[str, Any]]:
     return await get_all_notifications()
 
 
-async def get_all_notifications() -> List[Dict[str, Any]]:
+async def get_all_notifications(user_email: str = None) -> List[Dict[str, Any]]:
     async with AsyncSessionLocal() as session:
-        stmt = select(models.NotificationJob).order_by(models.NotificationJob.created_at.desc())
+        stmt = select(models.NotificationJob)
+        if user_email:
+            stmt = stmt.where(models.NotificationJob.user_id == user_email)
+        stmt = stmt.order_by(models.NotificationJob.created_at.desc())
         res = await session.execute(stmt)
         jobs = res.scalars().all()
         return [

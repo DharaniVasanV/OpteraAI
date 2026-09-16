@@ -42,37 +42,37 @@ export default function Resume() {
   };
 
   return (
-    <div className="p-8 text-gray-900 dark:text-gray-100 max-w-5xl mx-auto h-full overflow-y-auto">
+    <div className="p-8 text-[#111827] dark:text-[#F5F5F5] max-w-5xl mx-auto h-full overflow-y-auto">
       <div className="flex items-center gap-3 mb-2">
         <UploadCloud className="w-10 h-10 text-blue-400" />
         <h1 className="text-3xl font-bold">Resume Extractor</h1>
       </div>
-      <p className="text-gray-600 dark:text-gray-300 font-medium mb-8">Upload your resume to instantly extract key metadata.</p>
+      <p className="text-[#64748B] dark:text-[#A1A1AA] font-medium mb-8">Upload your resume to instantly extract key metadata.</p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Upload Panel */}
-        <div className="glass-card p-8 rounded-2xl h-fit border border-slate-200 dark:border-slate-700 shadow-xl relative overflow-hidden group hover:border-blue-500/50 transition-all">
+        <div className="glass-card p-8 rounded-2xl h-fit border border-[#DCE3ED] dark:border-[#2A2D33] shadow-xl relative overflow-hidden group hover:border-blue-500/50 transition-all">
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
           <h2 className="relative z-10 text-xl font-bold mb-6 flex items-center gap-2"><FileText className="w-5 h-5 text-blue-400"/> Upload PDF/DOCX</h2>
           
-          <div className="relative z-10 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl p-8 text-center hover:border-blue-400 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700/50 transition-all mb-6">
+          <div className="relative z-10 border-2 border-dashed border-[#DCE3ED] dark:border-[#2A2D33] rounded-xl p-8 text-center hover:border-blue-400 hover:bg-[#EFF6FF] dark:bg-[#18181B] dark:hover:bg-[#1F2228]/50 transition-all mb-6">
             <input 
               type="file" 
               accept=".pdf,.docx,.txt"
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-50"
               onChange={(e) => setFile(e.target.files && e.target.files.length > 0 ? e.target.files[0] : null)}
             />
-            <UploadCloud className="w-12 h-12 mx-auto mb-4 text-gray-600 dark:text-gray-300 font-medium group-hover:text-blue-400" />
-            <p className="text-gray-900 dark:text-gray-100 font-bold font-medium">
+            <UploadCloud className="w-12 h-12 mx-auto mb-4 text-[#64748B] dark:text-[#A1A1AA] font-medium group-hover:text-blue-400" />
+            <p className="text-[#111827] dark:text-[#F5F5F5] font-bold font-medium">
               {file ? file.name : "Drag & drop or click to upload"}
             </p>
-            {!file && <p className="text-xs text-slate-400 dark:text-slate-400 font-semibold mt-2">Supported formats: PDF, DOCX, TXT</p>}
+            {!file && <p className="text-xs text-[#94A3B8] dark:text-[#71717A] font-semibold mt-2">Supported formats: PDF, DOCX, TXT</p>}
           </div>
 
           <button 
             onClick={handleUpload}
             disabled={!file || isUploading}
-            className="relative z-10 w-full py-3 bg-[#0066FF] hover:bg-blue-600 text-white rounded-lg font-bold disabled:opacity-50 transition-colors shadow-lg shadow-blue-900/20"
+            className="relative z-10 w-full py-3 bg-[#2563FF] hover:bg-blue-600 text-white rounded-lg font-bold disabled:opacity-50 transition-colors shadow-lg shadow-blue-900/20"
           >
             {isUploading ? 'Parsing Resume...' : 'Extract Data'}
           </button>
@@ -80,27 +80,27 @@ export default function Resume() {
 
         {/* Results Panel */}
         {result && (
-          <div className="glass-card p-8 rounded-2xl flex flex-col justify-between h-fit animate-fade-in border border-slate-200 dark:border-slate-700 shadow-xl space-y-6">
+          <div className="glass-card p-8 rounded-2xl flex flex-col justify-between h-fit animate-fade-in border border-[#DCE3ED] dark:border-[#2A2D33] shadow-xl space-y-6">
             <div>
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-green-600">
                 <Bot className="w-5 h-5" /> Extraction Successful
               </h3>
               
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm p-3 rounded-lg border border-slate-200 dark:border-slate-700">
-                  <p className="text-xs text-slate-400 dark:text-slate-400 font-semibold uppercase font-bold">First Name</p>
-                  <p className="font-medium text-gray-900 dark:text-gray-100">{result.first_name || 'N/A'}</p>
+                <div className="bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm p-3 rounded-lg border border-[#DCE3ED] dark:border-[#2A2D33]">
+                  <p className="text-xs text-[#94A3B8] dark:text-[#71717A] font-semibold uppercase font-bold">First Name</p>
+                  <p className="font-medium text-[#111827] dark:text-[#F5F5F5]">{result.first_name || 'N/A'}</p>
                 </div>
-                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm p-3 rounded-lg border border-slate-200 dark:border-slate-700">
-                  <p className="text-xs text-slate-400 dark:text-slate-400 font-semibold uppercase font-bold">Last Name</p>
-                  <p className="font-medium text-gray-900 dark:text-gray-100">{result.last_name || 'N/A'}</p>
+                <div className="bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm p-3 rounded-lg border border-[#DCE3ED] dark:border-[#2A2D33]">
+                  <p className="text-xs text-[#94A3B8] dark:text-[#71717A] font-semibold uppercase font-bold">Last Name</p>
+                  <p className="font-medium text-[#111827] dark:text-[#F5F5F5]">{result.last_name || 'N/A'}</p>
                 </div>
               </div>
             </div>
 
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 font-medium mb-2 font-semibold">🤖 AI-Formatted Resume Profile <span className="text-xs text-violet-600">(via Groq LLM)</span></p>
-              <div className="bg-slate-50 dark:bg-slate-900 p-5 rounded-lg text-sm text-gray-900 dark:text-gray-100 font-mono h-64 overflow-y-auto border border-violet-500/20 whitespace-pre-wrap leading-relaxed shadow-inner">
+              <p className="text-sm text-[#64748B] dark:text-[#A1A1AA] font-medium mb-2 font-semibold">🤖 AI-Formatted Resume Profile <span className="text-xs text-violet-600">(via Groq LLM)</span></p>
+              <div className="bg-[#F4F7FB] dark:bg-[#080808] p-5 rounded-lg text-sm text-[#111827] dark:text-[#F5F5F5] font-mono h-64 overflow-y-auto border border-violet-500/20 whitespace-pre-wrap leading-relaxed shadow-inner">
                 {result.formatted_text || result.raw_text || 'No text extracted.'}
               </div>
             </div>
@@ -109,7 +109,7 @@ export default function Resume() {
               <button 
                 onClick={handleCareerAnalysis}
                 disabled={isAnalyzing}
-                className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-[#0066FF] to-[#0052cc] hover:from-[#0052cc] hover:to-[#0040a8] text-white rounded-xl font-bold shadow-lg transition-all disabled:opacity-50"
+                className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-[#2563FF] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#0040a8] text-white rounded-xl font-bold shadow-lg transition-all disabled:opacity-50"
               >
                 <Bot className="w-5 h-5"/>
                 {isAnalyzing ? 'Analyzing Career Matrix...' : 'Pass to Career Agent for Analysis'}
@@ -167,15 +167,15 @@ function ResumeHistoryList() {
   if (loading) {
     return (
       <div className="animate-pulse space-y-4">
-        <div className="h-32 bg-slate-100 dark:bg-slate-800 rounded-xl"></div>
-        <div className="h-32 bg-slate-100 dark:bg-slate-800 rounded-xl"></div>
+        <div className="h-32 bg-[#EFF6FF] dark:bg-[#18181B] rounded-xl"></div>
+        <div className="h-32 bg-[#EFF6FF] dark:bg-[#18181B] rounded-xl"></div>
       </div>
     );
   }
 
   if (resumes.length === 0) {
     return (
-      <div className="glass-card p-12 text-center text-slate-400 dark:text-slate-400 font-semibold rounded-xl border border-dashed border-slate-200 dark:border-slate-700">
+      <div className="glass-card p-12 text-center text-[#94A3B8] dark:text-[#71717A] font-semibold rounded-xl border border-dashed border-[#DCE3ED] dark:border-[#2A2D33]">
         <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
         <p className="font-medium">No resumes found in database.</p>
         <p className="text-sm mt-2">Upload a resume above to get started.</p>
@@ -186,23 +186,23 @@ function ResumeHistoryList() {
   return (
     <div className="space-y-4">
       {resumes.map((resume, idx) => (
-        <div key={resume.id || idx} className="glass-card rounded-xl border border-slate-200 dark:border-slate-700/50 p-5 flex justify-between items-start flex-wrap gap-4 hover:border-blue-500/30 transition-colors">
+        <div key={resume.id || idx} className="glass-card rounded-xl border border-[#DCE3ED] dark:border-[#2A2D33]/50 p-5 flex justify-between items-start flex-wrap gap-4 hover:border-blue-500/30 transition-colors">
           <div className="flex items-start gap-4">
             <div className="p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
               <FileText className="w-6 h-6 text-blue-400" />
             </div>
             <div>
               <h3 className="font-bold text-lg">{[resume.first_name, resume.last_name].filter(Boolean).join(' ') || resume.filename || 'Unknown Candidate'}</h3>
-              <p className="text-gray-600 dark:text-gray-300 font-medium text-sm">{resume.email || '—'} {resume.phone ? `• ${resume.phone}` : ''}</p>
-              {resume.location && <p className="text-slate-400 dark:text-slate-400 font-semibold text-xs">{resume.location}</p>}
+              <p className="text-[#64748B] dark:text-[#A1A1AA] font-medium text-sm">{resume.email || '—'} {resume.phone ? `• ${resume.phone}` : ''}</p>
+              {resume.location && <p className="text-[#94A3B8] dark:text-[#71717A] font-semibold text-xs">{resume.location}</p>}
             </div>
           </div>
           <div className="text-right">
-            <p className="text-xs text-slate-400 dark:text-slate-400 font-semibold mb-2">{resume.filename}</p>
-            <p className="text-xs text-slate-600">{new Date(resume.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+            <p className="text-xs text-[#94A3B8] dark:text-[#71717A] font-semibold mb-2">{resume.filename}</p>
+            <p className="text-xs text-[#64748B]">{new Date(resume.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
             <div className="flex flex-wrap gap-1 mt-2 justify-end">
               {resume.skills?.slice(0, 8).map((sk: any, i: number) => (
-                <span key={i} className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100 font-bold rounded text-[10px]">{sk.name || sk}</span>
+                <span key={i} className="px-2 py-0.5 bg-[#EFF6FF] dark:bg-[#18181B] text-[#111827] dark:text-[#F5F5F5] font-bold rounded text-[10px]">{sk.name || sk}</span>
               ))}
             </div>
           </div>

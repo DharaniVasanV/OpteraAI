@@ -47,8 +47,8 @@ export default function Home() {
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 mb-2">Command Center</h1>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">Live OpteraAI metrics — real data from your PostgreSQL database.</p>
+          <h1 className="text-4xl font-extrabold tracking-tight text-[#111827] dark:text-[#F5F5F5] mb-2">Command Center</h1>
+          <p className="text-[#64748B] dark:text-[#A1A1AA] text-lg">Live OpteraAI metrics — real data from your PostgreSQL database.</p>
         </div>
         <button onClick={connectBot} className="btn-primary-custom flex items-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap">
           <Cpu className="w-5 h-5" /> <span>Connect Bot Session</span>
@@ -66,10 +66,10 @@ export default function Home() {
                </div>
             </div>
             <div className="relative z-10">
-              <h3 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
+              <h3 className="text-3xl font-extrabold text-[#111827] dark:text-[#F5F5F5] mb-1">
                 {stats === null ? <span className="animate-pulse text-slate-300">—</span> : card.value}
               </h3>
-              <p className="text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">{card.title}</p>
+              <p className="text-sm font-semibold text-[#64748B] dark:text-[#A1A1AA] uppercase tracking-wider">{card.title}</p>
             </div>
           </div>
         ))}
@@ -79,22 +79,22 @@ export default function Home() {
       <div className="grid gap-6 md:grid-cols-5">
         <div className="glass-card p-6 md:col-span-3">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">System Activity (7 days)</h3>
-            <BarChart2 className="w-5 h-5 text-slate-400" />
+            <h3 className="text-xl font-bold text-[#111827] dark:text-[#F5F5F5]">System Activity (7 days)</h3>
+            <BarChart2 className="w-5 h-5 text-[#94A3B8]" />
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorEvents" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#0066FF" stopOpacity={0.4}/>
-                    <stop offset="95%" stopColor="#0066FF" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#2563FF" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#2563FF" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="name" stroke="#A0AEC0" axisLine={false} tickLine={false} dy={10} />
                 <YAxis stroke="#A0AEC0" axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ backgroundColor: '#fff', borderColor: '#E2E8F0', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)' }} itemStyle={{ color: '#0066FF', fontWeight: 'bold' }} />
-                <Area type="monotone" dataKey="events" stroke="#0066FF" strokeWidth={3} fillOpacity={1} fill="url(#colorEvents)" />
+                <Tooltip contentStyle={{ backgroundColor: '#fff', borderColor: '#E2E8F0', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)' }} itemStyle={{ color: '#2563FF', fontWeight: 'bold' }} />
+                <Area type="monotone" dataKey="events" stroke="#2563FF" strokeWidth={3} fillOpacity={1} fill="url(#colorEvents)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -102,18 +102,18 @@ export default function Home() {
 
         {/* Agent statuses */}
         <div className="glass-card p-6 md:col-span-2 flex flex-col h-full">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-5 flex items-center justify-between">
+          <h3 className="text-xl font-bold text-[#111827] dark:text-[#F5F5F5] mb-5 flex items-center justify-between">
             Agent Microservices
             <span className="text-sm font-bold bg-green-100 dark:bg-green-900/30 text-green-700 px-3 py-1 rounded-full shadow-sm">{onlineCount} / {agents.length} online</span>
           </h3>
           <div className="flex-1 space-y-3 overflow-y-auto px-1 custom-scrollbar">
             {agents.length === 0 ? (
-              <div className="text-slate-400 animate-pulse text-center mt-10">Fetching status...</div>
+              <div className="text-[#94A3B8] animate-pulse text-center mt-10">Fetching status...</div>
             ) : agents.map((agent, i) => (
-              <div key={i} className="flex items-center justify-between p-4 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 dark:border-slate-700 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div key={i} className="flex items-center justify-between p-4 bg-white dark:bg-[#18181B] border border-slate-100 dark:border-[#2A2D33] dark:border-[#2A2D33] rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center space-x-3">
                   <div className={`w-2.5 h-2.5 rounded-full ${agent.status === 'Running' ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-red-500'}`}></div>
-                  <span className="font-bold text-gray-900 dark:text-gray-100">{agent.name}</span>
+                  <span className="font-bold text-[#111827] dark:text-[#F5F5F5]">{agent.name}</span>
                 </div>
                 <span className={`text-xs font-bold px-2 py-1 rounded-md ${agent.status === 'Running' ? 'bg-green-50 dark:bg-green-900/20 text-green-600' : 'bg-red-50 text-red-600'}`}>
                   {agent.status}

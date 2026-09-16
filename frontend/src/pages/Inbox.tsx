@@ -79,7 +79,7 @@ export default function Inbox() {
   useEffect(() => { fetchInbox(); }, [fetchInbox]);
 
   if (loading) return (
-    <div className="p-8 flex items-center space-x-3 text-slate-400">
+    <div className="p-8 flex items-center space-x-3 text-[#94A3B8]">
       <Loader2 className="w-5 h-5 animate-spin text-primary" />
       <span>Loading Smart Inbox…</span>
     </div>
@@ -89,17 +89,17 @@ export default function Inbox() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 mb-2">Smart Inbox</h1>
-          <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">
+          <h1 className="text-4xl font-extrabold tracking-tight text-[#111827] dark:text-[#F5F5F5] mb-2">Smart Inbox</h1>
+          <p className="text-[#64748B] dark:text-[#A1A1AA] text-sm font-medium">
             Processed by Watcher → Classification → Priority → Research Agents
           </p>
         </div>
         <button
           onClick={triggerSync}
           disabled={syncing}
-          className="flex items-center space-x-2 px-5 py-2.5 btn-primary-custom rounded-xl text-sm font-bold transition-transform shadow-lg"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all border border-[#DCE3ED] dark:border-[#2A2D33] bg-white dark:bg-[#18181B] text-[#111827] dark:text-[#F5F5F5] hover:border-[#2563FF]/50 hover:bg-[#EFF6FF] dark:hover:bg-[#1F2228] shadow-sm"
         >
-          {syncing ? <Loader2 className="w-5 h-5 animate-spin" /> : <RefreshCw className="w-5 h-5" />}
+          {syncing ? <Loader2 className="w-5 h-5 animate-spin text-[#2563FF]" /> : <RefreshCw className="w-5 h-5 text-[#2563FF]" />}
           <span>{syncing ? 'Syncing…' : 'Sync Gmail'}</span>
         </button>
       </div>
@@ -110,8 +110,8 @@ export default function Inbox() {
         </div>
       )}
 
-      <div className="flex gap-2 glass-panel p-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm items-center">
-        <div className="flex gap-2 overflow-x-auto custom-scrollbar flex-1 pb-1 sm:pb-0 pt-2 px-1">
+      <div className="flex gap-2 bg-white dark:bg-[#18181B] p-2 rounded-2xl border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm items-center">
+        <div className="flex gap-1 overflow-x-auto flex-1 pb-1 sm:pb-0">
           {categories.map(cat => (
             <button
               key={cat}
@@ -119,10 +119,10 @@ export default function Inbox() {
                 if (editMode === 'delete' && cat !== 'ALL') handleDeleteCategory(cat);
                 else setActiveCategory(cat);
               }}
-              className={`relative px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap group ${
+              className={`relative px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap ${
                 activeCategory === cat
-                  ? 'bg-[#0066FF] text-white shadow-md'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:text-gray-100 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700'
+                  ? 'bg-[#2563FF] text-white shadow-md shadow-[#2563FF]/20'
+                  : 'text-[#64748B] dark:text-[#A1A1AA] hover:text-[#111827] dark:hover:text-[#F5F5F5] hover:bg-[#F4F7FB] dark:hover:bg-[#1F2228]'
               } ${editMode === 'delete' && cat !== 'ALL' ? 'hover:bg-rose-100 dark:hover:bg-rose-900/40 !text-rose-600 dark:!text-rose-400' : ''}`}
             >
               {cat}
@@ -133,20 +133,20 @@ export default function Inbox() {
           ))}
         </div>
         
-        <div className="pl-3 border-l border-slate-200 dark:border-slate-700 flex items-center">
+        <div className="pl-3 border-l border-[#DCE3ED] dark:border-[#2A2D33] flex items-center">
           {editMode === 'idle' && (
             <button
               onClick={() => setEditMode('options')}
-              className="px-4 py-2 rounded-xl text-sm font-bold text-gray-900 dark:text-gray-100 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 shadow-sm transition-all whitespace-nowrap flex-shrink-0"
+              className="px-4 py-2 rounded-xl text-sm font-bold text-[#111827] dark:text-[#F5F5F5] bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] hover:bg-[#F4F7FB] dark:hover:bg-slate-900 shadow-sm transition-all whitespace-nowrap flex-shrink-0"
             >
               Edit
             </button>
           )}
           {editMode === 'options' && (
             <div className="flex items-center space-x-2">
-              <button onClick={() => setEditMode('add')} className="px-4 py-2 bg-[#0066FF] hover:bg-blue-600 text-white text-sm rounded-xl transition-colors font-bold shadow-sm">Add</button>
+              <button onClick={() => setEditMode('add')} className="px-4 py-2 bg-[#2563FF] hover:bg-blue-600 text-white text-sm rounded-xl transition-colors font-bold shadow-sm">Add</button>
               <button onClick={() => setEditMode('delete')} className="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white text-sm rounded-xl transition-colors font-bold shadow-sm">Delete</button>
-              <button onClick={() => setEditMode('idle')} className="px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-300 text-sm rounded-xl font-bold transition-colors">Cancel</button>
+              <button onClick={() => setEditMode('idle')} className="px-4 py-2 bg-slate-200 dark:bg-[#1F2228] hover:bg-slate-300 dark:hover:bg-slate-600 text-[#64748B] dark:text-[#A1A1AA] text-sm rounded-xl font-bold transition-colors">Cancel</button>
             </div>
           )}
           {editMode === 'add' && (
@@ -156,18 +156,18 @@ export default function Inbox() {
                 value={newCatName} 
                 onChange={e => setNewCatName(e.target.value)} 
                 placeholder="Ex: Travel" 
-                className="px-4 py-2 text-sm bg-slate-50 dark:bg-slate-900 text-gray-900 dark:text-gray-100 rounded-xl border border-slate-200 dark:border-slate-700 shadow-inner outline-none w-32 focus:border-[#0066FF]/50" 
+                className="px-4 py-2 text-sm bg-[#F4F7FB] dark:bg-[#080808] text-[#111827] dark:text-[#F5F5F5] rounded-xl border border-[#DCE3ED] dark:border-[#2A2D33] shadow-inner outline-none w-32 focus:border-[#2563FF]/50" 
                 onKeyDown={e => e.key === 'Enter' && handleAddCategory()}
                 autoFocus
               />
               <button onClick={handleAddCategory} className="px-4 py-2 bg-[#2E9A47] hover:bg-green-700 text-white text-sm rounded-xl transition-colors font-bold shadow-sm">Save</button>
-              <button onClick={() => setEditMode('idle')} className="px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-300 text-sm rounded-xl font-bold transition-colors">Cancel</button>
+              <button onClick={() => setEditMode('idle')} className="px-4 py-2 bg-slate-200 dark:bg-[#1F2228] hover:bg-slate-300 dark:hover:bg-slate-600 text-[#64748B] dark:text-[#A1A1AA] text-sm rounded-xl font-bold transition-colors">Cancel</button>
             </div>
           )}
           {editMode === 'delete' && (
             <div className="flex items-center space-x-2">
                <span className="text-sm text-rose-500 font-bold px-2 whitespace-nowrap">Select to delete</span>
-               <button onClick={() => setEditMode('idle')} className="px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-300 text-sm rounded-xl font-bold transition-colors">Done</button>
+               <button onClick={() => setEditMode('idle')} className="px-4 py-2 bg-slate-200 dark:bg-[#1F2228] hover:bg-slate-300 dark:hover:bg-slate-600 text-[#64748B] dark:text-[#A1A1AA] text-sm rounded-xl font-bold transition-colors">Done</button>
             </div>
           )}
         </div>
@@ -188,7 +188,7 @@ export default function Inbox() {
             if (catLower === 'hackathon') return false;
             return activeCategory === 'ALL' || catLower === activeCategory.toLowerCase();
         }).length === 0 && !error && (
-          <div className="text-center p-12 glass-panel rounded-xl text-slate-400">
+          <div className="text-center p-12 glass-panel rounded-xl text-[#94A3B8]">
             <Mail className="w-10 h-10 mx-auto mb-4 opacity-40" />
             <p>No emails found in this category.</p>
           </div>

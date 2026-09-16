@@ -152,7 +152,7 @@ export default function Meetings() {
       case 'in_progress': return 'bg-green-50 dark:bg-green-900/20 text-green-700 border border-green-200 animate-pulse';
       case 'completed': return 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 border border-purple-200';
       case 'failed': return 'bg-red-50 text-red-700 border border-red-200';
-      default: return 'bg-slate-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300 font-bold border border-slate-200';
+      default: return 'bg-[#EFF6FF] dark:bg-[#18181B] text-[#64748B] dark:text-[#A1A1AA] font-bold border border-[#DCE3ED]';
     }
   };
 
@@ -173,14 +173,14 @@ export default function Meetings() {
       {/* HEADER */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-1">Meetings Agent Hub</h1>
-          <p className="text-gray-600 dark:text-gray-300 font-medium text-sm">
+          <h1 className="text-3xl font-bold tracking-tight text-[#111827] dark:text-[#F5F5F5] mb-1">Meetings Agent Hub</h1>
+          <p className="text-[#64748B] dark:text-[#A1A1AA] font-medium text-sm">
             Autonomous joining, transcript analysis, and inbox integration
           </p>
         </div>
         <div className="flex gap-3">
 
-          <button onClick={fetchMeetings} className="flex items-center space-x-2 px-4 py-2 bg-[#0066FF] hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition-colors shadow-sm">
+          <button onClick={fetchMeetings} className="flex items-center space-x-2 px-4 py-2 bg-[#2563FF] hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition-colors shadow-sm">
             {loadingMeetings ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
             <span>Refresh Dashboard</span>
           </button>
@@ -196,29 +196,29 @@ export default function Meetings() {
       {/* STATS ROW */}
       <div className="grid grid-cols-4 gap-4">
         {[
-          { label: 'Total Meetings', val: meetings.length, color: 'text-gray-900 dark:text-gray-100' },
-          { label: 'Scheduled', val: scheduledCount, color: 'text-[#0066FF]' },
+          { label: 'Total Meetings', val: meetings.length, color: 'text-[#111827] dark:text-[#F5F5F5]' },
+          { label: 'Scheduled', val: scheduledCount, color: 'text-[#2563FF]' },
           { label: 'In Progress', val: inProgressCount, color: 'text-[#2E9A47]' },
           { label: 'Completed', val: completedCount, color: 'text-purple-600' },
         ].map(s => (
           <div key={s.label} className="glass-card p-5 rounded-xl text-center">
             <div className={`text-3xl font-bold ${s.color} mb-1`}>{s.val}</div>
-            <div className="text-xs font-semibold text-gray-600 dark:text-gray-300 font-medium uppercase tracking-widest">{s.label}</div>
+            <div className="text-xs font-semibold text-[#64748B] dark:text-[#A1A1AA] font-medium uppercase tracking-widest">{s.label}</div>
           </div>
         ))}
       </div>
 
       {/* ACTIVE BOTS GRID */}
       <div>
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
-          <Cpu className="w-5 h-5 text-[#0066FF]" /> Active Bot Assignments
+        <h2 className="text-xl font-semibold text-[#111827] dark:text-[#F5F5F5] mb-4 flex items-center gap-2">
+          <Cpu className="w-5 h-5 text-[#2563FF]" /> Active Bot Assignments
         </h2>
         
         {loadingMeetings ? (
-          <div className="flex justify-center p-8"><Loader2 className="w-8 h-8 animate-spin text-[#0066FF]" /></div>
+          <div className="flex justify-center p-8"><Loader2 className="w-8 h-8 animate-spin text-[#2563FF]" /></div>
         ) : meetings.length === 0 ? (
-          <div className="text-center p-12 glass-card rounded-xl text-gray-600 dark:text-gray-300 font-medium border border-slate-200 dark:border-slate-700">
-            <Play className="w-10 h-10 mx-auto mb-4 opacity-40 text-[#0066FF]" />
+          <div className="text-center p-12 glass-card rounded-xl text-[#64748B] dark:text-[#A1A1AA] font-medium border border-[#DCE3ED] dark:border-[#2A2D33]">
+            <Play className="w-10 h-10 mx-auto mb-4 opacity-40 text-[#2563FF]" />
             <p>No active meetings in bots database. Add from inbox below.</p>
           </div>
         ) : (
@@ -227,44 +227,44 @@ export default function Meetings() {
               <div key={m.id} className="glass-card rounded-xl p-5 flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 truncate pr-2">{m.title}</h3>
+                    <h3 className="font-bold text-lg text-[#111827] dark:text-[#F5F5F5] truncate pr-2">{m.title}</h3>
                     <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${getStatusBadge(m.status)}`}>
                       {m.status}
                     </span>
                   </div>
                   
-                  <div className="space-y-2 text-sm text-gray-900 dark:text-gray-100 font-bold">
+                  <div className="space-y-2 text-sm text-[#111827] dark:text-[#F5F5F5] font-bold">
                     <div className="flex justify-between">
-                      <span className="text-slate-400 dark:text-slate-400 font-semibold">Platform:</span>
-                      <span className="font-medium bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded">{getPlatformIcon(m.platform)}</span>
+                      <span className="text-[#94A3B8] dark:text-[#71717A] font-semibold">Platform:</span>
+                      <span className="font-medium bg-[#EFF6FF] dark:bg-[#18181B]/80 px-2 py-0.5 rounded">{getPlatformIcon(m.platform)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400 dark:text-slate-400 font-semibold">Organizer:</span>
+                      <span className="text-[#94A3B8] dark:text-[#71717A] font-semibold">Organizer:</span>
                       <span className="truncate max-w-[200px]">{m.organizer || 'Unknown'}</span>
                     </div>
                     {(m.meeting_date || m.start_time) && (
                       <div className="flex justify-between">
-                        <span className="text-slate-400 dark:text-slate-400 font-semibold">Scheduled:</span>
+                        <span className="text-[#94A3B8] dark:text-[#71717A] font-semibold">Scheduled:</span>
                         <span>{m.meeting_date} {m.start_time}</span>
                       </div>
                     )}
                     <div className="flex flex-col mt-2">
-                      <span className="text-slate-400 dark:text-slate-400 font-semibold text-xs mb-1">Meeting URL:</span>
-                      <a href={m.meeting_url} target="_blank" className="text-[#0066FF] hover:underline truncate bg-white dark:bg-slate-800 shadow-sm p-2 rounded-md font-mono text-xs border border-slate-200 dark:border-slate-700">
+                      <span className="text-[#94A3B8] dark:text-[#71717A] font-semibold text-xs mb-1">Meeting URL:</span>
+                      <a href={m.meeting_url} target="_blank" className="text-[#2563FF] hover:underline truncate bg-white dark:bg-[#18181B] shadow-sm p-2 rounded-md font-mono text-xs border border-[#DCE3ED] dark:border-[#2A2D33]">
                         {m.meeting_url}
                       </a>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 mt-5 pt-4 border-t border-slate-200 dark:border-slate-700/50">
-                  <button onClick={() => triggerBot(m.id)} className="flex-1 flex justify-center items-center gap-2 bg-[#0066FF] hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm">
+                <div className="flex items-center gap-2 mt-5 pt-4 border-t border-[#DCE3ED] dark:border-[#2A2D33]/50">
+                  <button onClick={() => triggerBot(m.id)} className="flex-1 flex justify-center items-center gap-2 bg-[#2563FF] hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm">
                     <Play className="w-4 h-4" /> Join Bot
                   </button>
-                  <button onClick={() => setTranscriptModal(m.id)} className="flex-1 flex justify-center items-center gap-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-gray-900 dark:text-gray-100 px-3 py-2 rounded-lg text-sm font-semibold transition-colors">
+                  <button onClick={() => setTranscriptModal(m.id)} className="flex-1 flex justify-center items-center gap-2 bg-[#EFF6FF] dark:bg-[#1F2228] hover:bg-slate-200 dark:hover:bg-slate-600 text-[#111827] dark:text-[#F5F5F5] px-3 py-2 rounded-lg text-sm font-semibold transition-colors">
                     <FileText className="w-4 h-4" /> Transcript
                   </button>
-                  <button onClick={() => setEditModal(m)} className="p-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-gray-900 dark:text-gray-100 font-bold rounded-lg transition-colors border border-slate-200">
+                  <button onClick={() => setEditModal(m)} className="p-2 bg-[#EFF6FF] dark:bg-[#1F2228] hover:bg-slate-200 dark:hover:bg-slate-600 text-[#111827] dark:text-[#F5F5F5] font-bold rounded-lg transition-colors border border-[#DCE3ED]">
                     <Edit2 className="w-4 h-4" />
                   </button>
                   <button onClick={() => deleteMeeting(m.id)} className="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors border border-red-200">
@@ -278,13 +278,13 @@ export default function Meetings() {
       </div>
 
       {/* CLASSIFIED EMAILS SECTION */}
-      <div className="pt-8 border-t border-slate-200 dark:border-slate-700 mt-8">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+      <div className="pt-8 border-t border-[#DCE3ED] dark:border-[#2A2D33] mt-8">
+        <h2 className="text-xl font-semibold text-[#111827] dark:text-[#F5F5F5] mb-4 flex items-center gap-2">
           <CalendarPlus className="w-5 h-5 text-[#2E9A47]" /> Watcher Inbox (Suggested Meetings)
         </h2>
         
         {loadingEmails ? (
-           <div className="flex text-gray-600 dark:text-gray-300 font-medium items-center justify-center p-8"><Loader2 className="w-5 h-5 animate-spin mr-2" /> Loading suggested emails...</div>
+           <div className="flex text-[#64748B] dark:text-[#A1A1AA] font-medium items-center justify-center p-8"><Loader2 className="w-5 h-5 animate-spin mr-2" /> Loading suggested emails...</div>
         ) : (
           <div className="space-y-3">
             {emails.map((email, i) => (
@@ -296,7 +296,7 @@ export default function Meetings() {
               />
             ))}
             {emails.length === 0 && (
-              <div className="text-center p-8 glass-card rounded-xl text-gray-600 dark:text-gray-300 font-medium">
+              <div className="text-center p-8 glass-card rounded-xl text-[#64748B] dark:text-[#A1A1AA] font-medium">
                 <CheckCircle2 className="w-8 h-8 mx-auto mb-3 opacity-40 text-emerald-400" />
                 <p>No meeting communication detected in inbox.</p>
               </div>
@@ -308,18 +308,18 @@ export default function Meetings() {
       {/* TRANSCRIPT MODAL */}
       {transcriptModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm border border-slate-200 dark:border-slate-700 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
-            <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm/50">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+          <div className="bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm border border-[#DCE3ED] dark:border-[#2A2D33] rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+            <div className="p-4 border-b border-[#DCE3ED] dark:border-[#2A2D33] flex justify-between items-center bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm/50">
+              <h3 className="text-lg font-bold text-[#111827] dark:text-[#F5F5F5] flex items-center gap-2">
                 <FileText className="w-5 h-5 text-primary" /> Meeting Transcript
               </h3>
-              <button onClick={() => setTranscriptModal(null)} className="text-gray-600 dark:text-gray-300 font-medium hover:text-gray-900 dark:text-gray-100"><X className="w-5 h-5" /></button>
+              <button onClick={() => setTranscriptModal(null)} className="text-[#64748B] dark:text-[#A1A1AA] font-medium hover:text-[#111827] dark:text-[#F5F5F5]"><X className="w-5 h-5" /></button>
             </div>
             
             <div className="p-5 flex-1 overflow-y-auto min-h-[300px]">
               {(() => {
                 const trn = meetings.find(m => m.id === transcriptModal)?.transcript;
-                if (!trn) return <div className="text-center text-slate-400 dark:text-slate-400 font-semibold py-10 italic">No transcript recorded yet. Wait for bot to complete.</div>;
+                if (!trn) return <div className="text-center text-[#94A3B8] dark:text-[#71717A] font-semibold py-10 italic">No transcript recorded yet. Wait for bot to complete.</div>;
                 
                 return (
                   <div className="space-y-4">
@@ -330,13 +330,13 @@ export default function Meetings() {
                       if (match) {
                          const [, time, speaker, text] = match;
                         const isBot = speaker.includes('Bot') || speaker.includes('AI');
-                         const spkColor = isBot ? 'text-primary' : (speaker.includes('Speaker') ? 'text-gray-600 dark:text-gray-300 font-medium' : 'text-emerald-400');
+                         const spkColor = isBot ? 'text-primary' : (speaker.includes('Speaker') ? 'text-[#64748B] dark:text-[#A1A1AA] font-medium' : 'text-emerald-400');
                          return (
                            <div key={i} className="flex gap-3 text-sm">
-                             <div className="text-slate-600 font-mono text-xs pt-1 whitespace-nowrap">[{time}]</div>
-                             <div className="flex-1 bg-slate-100 dark:bg-slate-800/30 p-3 rounded-lg border border-slate-200 dark:border-slate-700/50">
+                             <div className="text-[#64748B] font-mono text-xs pt-1 whitespace-nowrap">[{time}]</div>
+                             <div className="flex-1 bg-[#EFF6FF] dark:bg-[#18181B]/30 p-3 rounded-lg border border-[#DCE3ED] dark:border-[#2A2D33]/50">
                                <div className={`font-bold mb-1 ${spkColor}`}>{speaker}</div>
-                               <div className="text-gray-900 dark:text-gray-100 font-bold leading-relaxed">{text}</div>
+                               <div className="text-[#111827] dark:text-[#F5F5F5] font-bold leading-relaxed">{text}</div>
                              </div>
                            </div>
                          );
@@ -346,27 +346,27 @@ export default function Meetings() {
                       if (inlineMatch) {
                          const [, speaker, text] = inlineMatch;
                          const isBot = speaker.includes('Bot') || speaker.includes('AI');
-                         const spkColor = isBot ? 'text-primary' : (speaker.includes('Speaker') ? 'text-gray-600 dark:text-gray-300 font-medium' : 'text-purple-400');
+                         const spkColor = isBot ? 'text-primary' : (speaker.includes('Speaker') ? 'text-[#64748B] dark:text-[#A1A1AA] font-medium' : 'text-purple-400');
                          return (
                            <div key={i} className="flex gap-3 text-sm">
-                             <div className="text-slate-600 font-mono text-xs pt-1 w-12 text-center">-</div>
-                             <div className="flex-1 bg-slate-100 dark:bg-slate-800/30 p-3 rounded-lg border border-slate-200 dark:border-slate-700/50">
+                             <div className="text-[#64748B] font-mono text-xs pt-1 w-12 text-center">-</div>
+                             <div className="flex-1 bg-[#EFF6FF] dark:bg-[#18181B]/30 p-3 rounded-lg border border-[#DCE3ED] dark:border-[#2A2D33]/50">
                                <div className={`font-bold mb-1 ${spkColor}`}>{speaker.trim()}</div>
-                               <div className="text-gray-900 dark:text-gray-100 font-bold leading-relaxed">{text.trim()}</div>
+                               <div className="text-[#111827] dark:text-[#F5F5F5] font-bold leading-relaxed">{text.trim()}</div>
                              </div>
                            </div>
                          );
                       }
 
-                      return <div key={i} className="text-sm text-gray-600 dark:text-gray-300 font-medium p-2 bg-slate-100 dark:bg-slate-800/20 rounded">{chunk}</div>;
+                      return <div key={i} className="text-sm text-[#64748B] dark:text-[#A1A1AA] font-medium p-2 bg-[#EFF6FF] dark:bg-[#18181B]/20 rounded">{chunk}</div>;
                     })}
                   </div>
                 );
               })()}
             </div>
             
-            <div className="p-4 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm/50 flex justify-between items-center">
-              <span className="text-xs text-slate-400 dark:text-slate-400 font-semibold">Run Identify Names to resolve 'Speaker 1' to real names using Groq AI.</span>
+            <div className="p-4 border-t border-[#DCE3ED] dark:border-[#2A2D33] bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm/50 flex justify-between items-center">
+              <span className="text-xs text-[#94A3B8] dark:text-[#71717A] font-semibold">Run Identify Names to resolve 'Speaker 1' to real names using Groq AI.</span>
               <button 
                 onClick={() => identifyNames(transcriptModal)}
                 disabled={reformatting || !meetings.find(m => m.id === transcriptModal)?.transcript}
@@ -383,44 +383,44 @@ export default function Meetings() {
       {/* EDIT MODAL */}
       {editModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm border border-slate-200 dark:border-slate-700 rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl p-5">
-            <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-4">Edit Meeting</h3>
+          <div className="bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm border border-[#DCE3ED] dark:border-[#2A2D33] rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl p-5">
+            <h3 className="font-bold text-[#111827] dark:text-[#F5F5F5] mb-4">Edit Meeting</h3>
             <form onSubmit={saveEdit} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 font-medium mb-1">Meeting Date (YYYY-MM-DD)</label>
+                <label className="block text-xs font-medium text-[#64748B] dark:text-[#A1A1AA] font-medium mb-1">Meeting Date (YYYY-MM-DD)</label>
                 <input 
                   type="text" 
                   value={editModal.meeting_date || ''} 
                   onChange={(e) => setEditModal({...editModal, meeting_date: e.target.value})}
-                  className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-2 text-gray-900 dark:text-gray-100 text-sm"
+                  className="w-full bg-[#EFF6FF] dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-lg p-2 text-[#111827] dark:text-[#F5F5F5] text-sm"
                   placeholder="2026-07-31"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 font-medium mb-1">Start Time (HH:MM)</label>
+                <label className="block text-xs font-medium text-[#64748B] dark:text-[#A1A1AA] font-medium mb-1">Start Time (HH:MM)</label>
                 <input 
                   type="text" 
                   value={editModal.start_time || ''} 
                   onChange={(e) => setEditModal({...editModal, start_time: e.target.value})}
-                  className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-2 text-gray-900 dark:text-gray-100 text-sm"
+                  className="w-full bg-[#EFF6FF] dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-lg p-2 text-[#111827] dark:text-[#F5F5F5] text-sm"
                   placeholder="14:30"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 font-medium mb-1">Meeting URL</label>
+                <label className="block text-xs font-medium text-[#64748B] dark:text-[#A1A1AA] font-medium mb-1">Meeting URL</label>
                 <input 
                   type="text" 
                   value={editModal.meeting_url || ''} 
                   onChange={(e) => setEditModal({...editModal, meeting_url: e.target.value})}
-                  className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-2 text-gray-900 dark:text-gray-100 text-sm"
+                  className="w-full bg-[#EFF6FF] dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-lg p-2 text-[#111827] dark:text-[#F5F5F5] text-sm"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 font-medium mb-1">Platform</label>
+                <label className="block text-xs font-medium text-[#64748B] dark:text-[#A1A1AA] font-medium mb-1">Platform</label>
                 <select 
                   value={editModal.platform || ''} 
                   onChange={(e) => setEditModal({...editModal, platform: e.target.value})}
-                  className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-2 text-gray-900 dark:text-gray-100 text-sm"
+                  className="w-full bg-[#EFF6FF] dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-lg p-2 text-[#111827] dark:text-[#F5F5F5] text-sm"
                 >
                   <option value="">Auto-detect</option>
                   <option value="google_meet">Google Meet</option>
@@ -429,11 +429,11 @@ export default function Meetings() {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 font-medium mb-1">Status</label>
+                <label className="block text-xs font-medium text-[#64748B] dark:text-[#A1A1AA] font-medium mb-1">Status</label>
                 <select 
                   value={editModal.status || ''} 
                   onChange={(e) => setEditModal({...editModal, status: e.target.value})}
-                  className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-2 text-gray-900 dark:text-gray-100 text-sm"
+                  className="w-full bg-[#EFF6FF] dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-lg p-2 text-[#111827] dark:text-[#F5F5F5] text-sm"
                 >
                   <option value="scheduled">Scheduled</option>
                   <option value="joining">Joining</option>
@@ -443,7 +443,7 @@ export default function Meetings() {
                 </select>
               </div>
               <div className="flex justify-end gap-2 pt-2">
-                <button type="button" onClick={() => setEditModal(null)} className="px-5 py-2 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-gray-600 dark:text-gray-300 font-bold rounded-lg text-sm bg-transparent transition-colors">Cancel</button>
+                <button type="button" onClick={() => setEditModal(null)} className="px-5 py-2 hover:bg-[#EFF6FF] dark:bg-[#18181B] dark:hover:bg-[#1F2228] text-[#64748B] dark:text-[#A1A1AA] font-bold rounded-lg text-sm bg-transparent transition-colors">Cancel</button>
                 <button type="submit" className="px-5 py-2 btn-primary-custom shadow-md rounded-lg text-sm font-semibold">Save Changes</button>
               </div>
             </form>

@@ -39,7 +39,7 @@ export default function Opportunities() {
   useEffect(() => { fetchOpportunities(); }, [fetchOpportunities]);
 
   if (loading) return (
-    <div className="p-8 flex items-center space-x-3 text-gray-600 dark:text-gray-300 font-medium">
+    <div className="p-8 flex items-center space-x-3 text-[#64748B] dark:text-[#A1A1AA] font-medium">
       <Loader2 className="w-5 h-5 animate-spin text-primary" />
       <span>Loading Opportunities…</span>
     </div>
@@ -49,8 +49,8 @@ export default function Opportunities() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-1">Opportunities</h1>
-          <p className="text-gray-600 dark:text-gray-300 font-medium text-sm">
+          <h1 className="text-3xl font-bold tracking-tight text-[#111827] dark:text-[#F5F5F5] mb-1">Opportunities</h1>
+          <p className="text-[#64748B] dark:text-[#A1A1AA] font-medium text-sm">
             Internships, Hackathons & Jobs parsed from 1-Click Auto Apply capable Filler Agent
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function Opportunities() {
         </div>
       )}
 
-      <div className="flex gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm p-2 rounded-xl overflow-x-auto custom-scrollbar border border-slate-200 dark:border-slate-700">
+      <div className="flex gap-2 bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm p-2 rounded-xl overflow-x-auto custom-scrollbar border border-[#DCE3ED] dark:border-[#2A2D33]">
         {categories.map(cat => (
           <button
             key={cat}
@@ -70,7 +70,7 @@ export default function Opportunities() {
             className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
               activeCategory === cat
                 ? 'bg-violet-600 text-white shadow-[0_0_10px_rgba(139,92,246,0.5)]'
-                : 'text-gray-600 dark:text-gray-300 font-medium hover:text-gray-900 dark:text-gray-100 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700'
+                : 'text-[#64748B] dark:text-[#A1A1AA] font-medium hover:text-[#111827] dark:text-[#F5F5F5] hover:bg-[#EFF6FF] dark:bg-[#18181B] dark:hover:bg-[#1F2228]'
             }`}
           >
             {cat}
@@ -85,7 +85,7 @@ export default function Opportunities() {
             <EmailCard key={email.id || i} email={email} />
         ))}
         {emails.filter(e => activeCategory === 'ALL' || (e.category || '').toLowerCase() === activeCategory.toLowerCase()).length === 0 && !error && (
-          <div className="text-center p-12 glass-card rounded-xl text-gray-600 dark:text-gray-300 font-medium">
+          <div className="text-center p-12 glass-card rounded-xl text-[#64748B] dark:text-[#A1A1AA] font-medium">
             <Zap className="w-10 h-10 mx-auto mb-4 opacity-40 text-yellow-400" />
             <p>No new opportunities detected in your inbox.</p>
           </div>

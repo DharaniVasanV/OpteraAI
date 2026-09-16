@@ -11,19 +11,19 @@ import { cn } from '../lib/utils';
 import { FillerModal } from './FillerModal';
 
 export const sentimentColor = (s: string) => {
-  if (!s) return 'text-gray-600 dark:text-gray-300 font-medium';
+  if (!s) return 'text-[#64748B] dark:text-[#A1A1AA] font-medium';
   const l = s.toLowerCase();
   if (l === 'positive') return 'text-green-400';
   if (l === 'negative') return 'text-red-400';
   if (l === 'mixed') return 'text-yellow-400';
-  return 'text-gray-600 dark:text-gray-300 font-medium';
+  return 'text-[#64748B] dark:text-[#A1A1AA] font-medium';
 };
 
-export function Section({ icon: Icon, label, color = 'text-gray-600 dark:text-gray-300 font-medium', children }: {
+export function Section({ icon: Icon, label, color = 'text-[#64748B] dark:text-[#A1A1AA] font-medium', children }: {
   icon: any; label: string; color?: string; children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm/60 rounded-xl p-4">
+    <div className="bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] shadow-sm/60 rounded-xl p-4">
       <h4 className={`text-xs font-semibold uppercase tracking-wider mb-3 flex items-center gap-1.5 ${color}`}>
         <Icon className="w-4 h-4" />{label}
       </h4>
@@ -217,45 +217,57 @@ export function EmailCard({
   return (
     <>
       <div 
-        className="glass-card flex flex-col bg-white dark:bg-[#0b1021] border border-slate-200 dark:border-[#1e293b]/80 hover:border-[#0066FF]/40 rounded-2xl overflow-hidden cursor-pointer shadow-sm dark:shadow-black/20 hover:shadow-md dark:hover:shadow-black/40 transition-all duration-300 relative group"
+        className="flex flex-col bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] hover:border-[#2563FF]/30 dark:hover:border-[#2563FF]/20 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 relative group shadow-sm hover:shadow-lg dark:shadow-black/30 dark:hover:shadow-black/50"
         onClick={openModal}
       >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500 rounded-full blur-[70px] opacity-[0.03] group-hover:opacity-10 transition-opacity"></div>
-        
-        {/* Badges / Header Row */}
-        <div className="px-4 py-4 pb-2 flex flex-wrap gap-2 items-center text-[10px] uppercase font-bold tracking-wider">
-          <span className="px-2.5 py-1 bg-violet-100 dark:bg-[#8B5CF6]/10 text-violet-700 dark:text-violet-400 rounded flex gap-1.5 items-center border border-violet-200 dark:border-violet-500/20">
-            <Folder className="w-3 h-3" /> {email.category || 'General'}
+        {/* Top glow accent — blue left, red right in dark mode */}
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#2563FF]/60 via-transparent to-[#FF2D2D]/60 dark:from-[#2563FF] dark:via-transparent dark:to-[#FF2D2D] opacity-0 group-hover:opacity-100 dark:opacity-40 dark:group-hover:opacity-80 transition-opacity rounded-t-2xl" />
+        {/* Subtle top corner glow in dark mode */}
+        <div className="absolute top-0 right-0 w-24 h-24 bg-[#FF2D2D] rounded-full blur-[50px] opacity-0 dark:opacity-[0.06] group-hover:dark:opacity-[0.12] transition-opacity pointer-events-none" />
+        <div className="absolute top-0 left-0 w-20 h-20 bg-[#2563FF] rounded-full blur-[50px] opacity-0 dark:opacity-[0.05] group-hover:dark:opacity-[0.10] transition-opacity pointer-events-none" />
+
+        {/* Badge Row — Category | Platform | FLAG */}
+        <div className="px-4 pt-4 pb-2 flex flex-wrap gap-1.5 items-center">
+          {/* Category tags */}
+          <span className="px-2 py-0.5 bg-[#EFF6FF] dark:bg-[#2563FF]/10 text-[#2563FF] dark:text-[#2563FF] rounded text-[10px] font-bold uppercase tracking-wider flex gap-1 items-center border border-[#2563FF]/20 dark:border-[#2563FF]/20">
+            <Folder className="w-2.5 h-2.5" /> {email.category || 'General'}
           </span>
-          <span className="px-2.5 py-1 bg-blue-50 dark:bg-[#0066FF]/10 text-blue-700 dark:text-blue-400 rounded flex gap-1.5 items-center border border-blue-200 dark:border-[#0066FF]/20">
-            <img src="/logo.png" className="w-3 h-3 opacity-90" alt="" /> {getPlatform()}
+
+          {/* UNSTOP badge */}
+          <span className="ml-auto px-2 py-0.5 bg-[#18181B]/5 dark:bg-[#080808]/60 text-[#64748B] dark:text-[#A1A1AA] rounded text-[10px] font-bold uppercase tracking-wider border border-[#DCE3ED] dark:border-[#2A2D33] flex items-center gap-1">
+            <img src="/logo.png" className="w-2.5 h-2.5 opacity-50" alt="" /> UNSTOP
           </span>
-          <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-400 rounded flex gap-1.5 items-center border border-slate-200 dark:border-slate-700/50">
-            Flag: {email.priority_score}%
+          {/* FLAG badge */}
+          <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider border ${
+            email.priority_score > 50
+              ? 'bg-[#FEF2F2] dark:bg-[#2A1010] text-[#FF2D2D] border-[#FF2D2D]/30 dark:border-[#FF2D2D]/40'
+              : 'bg-[#EFF6FF] dark:bg-[#18181B] text-[#2563FF] border-[#2563FF]/20'
+          }`}>
+            FLAG: {email.priority_score}%
           </span>
         </div>
 
         {/* Content Block */}
         <div className="px-4 py-2 flex-col flex-1 flex">
-          <h3 className="font-extrabold text-slate-900 dark:text-blue-50 text-[15px] leading-tight mb-2 line-clamp-2">
+          <h3 className="font-extrabold text-[#111827] dark:text-blue-50 text-[15px] leading-tight mb-2 line-clamp-2">
             {email.title || email.subject || 'Untitled'}
           </h3>
-          <p className="text-slate-600 dark:text-slate-400 text-xs line-clamp-2 leading-relaxed">
+          <p className="text-[#64748B] dark:text-[#71717A] text-xs line-clamp-2 leading-relaxed">
             {body || "No additional description provided."}
           </p>
         </div>
 
         {/* Separator */}
-        <div className="mx-4 my-3 border-t border-slate-200 dark:border-slate-800/80"></div>
+        <div className="mx-4 my-3 border-t border-[#DCE3ED] dark:border-[#2A2D33]/80"></div>
 
         {/* Table Details */}
         <div className="px-4 pb-4 space-y-2.5 text-xs">
-          <div className="flex justify-between items-center text-slate-700 dark:text-slate-300">
-            <span className="flex items-center gap-2 text-slate-500 font-medium"><User className="w-3.5 h-3.5" /> Sender</span>
+          <div className="flex justify-between items-center text-[#64748B] dark:text-[#A1A1AA]">
+            <span className="flex items-center gap-2 text-[#94A3B8] font-medium"><User className="w-3.5 h-3.5" /> Sender</span>
             <span className="font-bold truncate max-w-[150px]">{email.sender}</span>
           </div>
-          <div className="flex justify-between items-center text-slate-700 dark:text-slate-300">
-            <span className="flex items-center gap-2 text-slate-500 font-medium"><CalendarIcon className="w-3.5 h-3.5" /> Last Date</span>
+          <div className="flex justify-between items-center text-[#64748B] dark:text-[#A1A1AA]">
+            <span className="flex items-center gap-2 text-[#94A3B8] font-medium"><CalendarIcon className="w-3.5 h-3.5" /> Last Date</span>
             <span className="font-bold truncate">{email.date || email.timestamp || 'Not Specified'}</span>
           </div>
           {(email.meeting_link || hasFormUrl) && (
@@ -279,7 +291,7 @@ export function EmailCard({
             href={email.meeting_link || targetUrlFallback(body) || '#'} 
             target="_blank"
             onClick={(e) => e.stopPropagation()}
-            className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800/80 dark:hover:bg-slate-700/80 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50 rounded-lg py-2 flex items-center justify-center gap-1.5 text-xs font-bold transition-all"
+            className="flex-1 bg-[#EFF6FF] hover:bg-slate-200 text-[#64748B] dark:bg-transparent dark:hover:bg-[#1F2228] dark:text-[#A1A1AA] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-lg py-2 flex items-center justify-center gap-1.5 text-xs font-bold transition-all"
           >
            <ExternalLink className="w-3.5 h-3.5" /> Open Manually
           </a>
@@ -288,13 +300,13 @@ export function EmailCard({
             <button 
               onClick={(e) => { e.stopPropagation(); triggerAutoApply(); }} 
               disabled={applyStatus !== 'idle'} 
-              className="flex-1 bg-[#0066FF] hover:bg-blue-600 border border-blue-500 rounded-lg py-2 flex items-center justify-center gap-1.5 text-xs text-white font-extrabold transition-all shadow-md shadow-blue-500/20"
+              className="flex-1 bg-[#2563FF] hover:bg-blue-600 border border-blue-500 rounded-lg py-2 flex items-center justify-center gap-1.5 text-xs text-white font-extrabold transition-all shadow-md shadow-blue-500/20"
             >
               {applyStatus === 'loading' ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Zap className="w-3.5 h-3.5 text-yellow-300" />} AI Auto-Fill
             </button>
           )}
 
-          <button onClick={(e) => { e.stopPropagation(); openModal(); }} className="px-3 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-500 dark:bg-slate-800/50 dark:hover:bg-slate-800 dark:border-slate-700/50 dark:hover:border-slate-600 rounded-lg flex items-center justify-center dark:text-slate-400 transition-colors">
+          <button onClick={(e) => { e.stopPropagation(); openModal(); }} className="px-3 bg-[#EFF6FF] hover:bg-slate-200 border border-[#DCE3ED] text-[#94A3B8] dark:bg-transparent dark:hover:bg-[#1F2228] dark:border-[#2A2D33] dark:hover:border-slate-600 rounded-lg flex items-center justify-center dark:text-[#71717A] transition-colors">
             <Cpu className="w-4 h-4" />
           </button>
         </div>
@@ -305,18 +317,18 @@ export function EmailCard({
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6" onClick={() => setShowModal(false)}>
           <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"></div>
           
-          <div className="bg-white dark:bg-[#0b1021] border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col relative z-10 shadow-2xl animate-in slide-in-from-bottom-4 zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white dark:bg-[#080808] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col relative z-10 shadow-2xl animate-in slide-in-from-bottom-4 zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
             {/* Modal Header Tabs */}
-            <div className="px-4 sm:px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-[#12182b]">
+            <div className="px-4 sm:px-6 py-4 border-b border-[#DCE3ED] dark:border-[#2A2D33] flex justify-between items-center bg-[#F4F7FB] dark:bg-[#12182b]">
                <div className="flex gap-4 sm:gap-6 items-center overflow-x-auto custom-scrollbar pr-4">
-                 <button onClick={() => setActiveTab('mail')} className={`text-sm sm:text-lg font-extrabold pb-1 border-b-2 transition-colors flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${activeTab === 'mail' ? 'border-[#0066FF] text-[#0066FF]' : 'border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'}`}>
+                 <button onClick={() => setActiveTab('mail')} className={`text-sm sm:text-lg font-extrabold pb-1 border-b-2 transition-colors flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${activeTab === 'mail' ? 'border-[#2563FF] text-[#2563FF]' : 'border-transparent text-[#94A3B8] hover:text-[#64748B] dark:text-[#71717A] dark:hover:text-slate-300'}`}>
                    <Mail className="w-4 h-4 sm:w-5 sm:h-5"/> Mail
                  </button>
-                 <button onClick={() => { setActiveTab('research'); if(!research && !analyzing && body) analyzeWithResearch(); }} className={`text-sm sm:text-lg font-extrabold pb-1 border-b-2 transition-colors flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${activeTab === 'research' ? 'border-[#0066FF] text-[#0066FF]' : 'border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'}`}>
+                 <button onClick={() => { setActiveTab('research'); if(!research && !analyzing && body) analyzeWithResearch(); }} className={`text-sm sm:text-lg font-extrabold pb-1 border-b-2 transition-colors flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${activeTab === 'research' ? 'border-[#2563FF] text-[#2563FF]' : 'border-transparent text-[#94A3B8] hover:text-[#64748B] dark:text-[#71717A] dark:hover:text-slate-300'}`}>
                    <Cpu className="w-4 h-4 sm:w-5 sm:h-5" /> Research Analysis
                  </button>
                </div>
-               <button onClick={() => setShowModal(false)} className="p-2 flex-shrink-0 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 transition-colors">
+               <button onClick={() => setShowModal(false)} className="p-2 flex-shrink-0 rounded-full hover:bg-slate-200 dark:hover:bg-[#1F2228] text-[#94A3B8] transition-colors">
                  <X className="w-5 h-5"/>
                </button>
             </div>
@@ -324,19 +336,19 @@ export function EmailCard({
             <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-8 custom-scrollbar">
                {/* Header Info (Always Visible) */}
                <div>
-                  <h2 className="text-2xl font-black text-gray-900 dark:text-gray-100 mb-2">{email.title || email.subject}</h2>
-                  <div className="flex items-center gap-3 text-sm font-semibold text-slate-500">
-                    <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/50 px-2.5 py-1 rounded-md"><User className="w-4 h-4"/> {email.sender}</span>
-                    <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/50 px-2.5 py-1 rounded-md"><CalendarIcon className="w-4 h-4"/> {email.date || email.timestamp}</span>
+                  <h2 className="text-2xl font-black text-[#111827] dark:text-[#F5F5F5] mb-2">{email.title || email.subject}</h2>
+                  <div className="flex items-center gap-3 text-sm font-semibold text-[#94A3B8]">
+                    <span className="flex items-center gap-1.5 bg-[#EFF6FF] dark:bg-[#18181B]/50 px-2.5 py-1 rounded-md"><User className="w-4 h-4"/> {email.sender}</span>
+                    <span className="flex items-center gap-1.5 bg-[#EFF6FF] dark:bg-[#18181B]/50 px-2.5 py-1 rounded-md"><CalendarIcon className="w-4 h-4"/> {email.date || email.timestamp}</span>
                     <span className="flex items-center gap-1.5 bg-violet-100/50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 px-2.5 py-1 rounded-md"><Folder className="w-4 h-4"/> {email.category}</span>
                   </div>
                </div>
 
                {/* Raw Email */}
                {activeTab === 'mail' && (
-                 <div className="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-200 dark:border-slate-800/50 animate-in fade-in">
-                   <h4 className="text-sm font-extrabold text-gray-900 dark:text-gray-200 mb-3 uppercase tracking-wider">Raw Input Data</h4>
-                   <div className="text-[14px] text-gray-600 dark:text-gray-400 whitespace-pre-wrap font-medium">
+                 <div className="bg-[#F4F7FB] dark:bg-[#080808]/50 p-5 rounded-xl border border-[#DCE3ED] dark:border-[#2A2D33]/50 animate-in fade-in">
+                   <h4 className="text-sm font-extrabold text-[#111827] dark:text-[#F5F5F5] mb-3 uppercase tracking-wider">Raw Input Data</h4>
+                   <div className="text-[14px] text-[#64748B] dark:text-[#71717A] whitespace-pre-wrap font-medium">
                      {body}
                    </div>
                  </div>
@@ -346,18 +358,18 @@ export function EmailCard({
                {activeTab === 'research' && (
                  <div className="animate-in fade-in">
                    {analyzing ? (
-                     <div className="flex flex-col items-center justify-center py-12 text-[#0066FF] bg-blue-50 dark:bg-blue-900/10 rounded-xl border border-blue-100 dark:border-blue-900/20">
+                     <div className="flex flex-col items-center justify-center py-12 text-[#2563FF] bg-blue-50 dark:bg-blue-900/10 rounded-xl border border-blue-100 dark:border-blue-900/20">
                        <Loader2 className="w-8 h-8 animate-spin mb-4" />
                        <span className="font-extrabold text-lg">Research Agent is constructing entity map...</span>
                      </div>
                    ) : research ? (
                      <div className="space-y-6">
-                       <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-                         <h3 className="text-lg font-black text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                       <div className="flex items-center justify-between border-b border-[#DCE3ED] dark:border-[#2A2D33] pb-3">
+                         <h3 className="text-lg font-black text-[#111827] dark:text-[#F5F5F5] flex items-center gap-2">
                            <Zap className="w-5 h-5 text-yellow-500" /> Deep Analysis Results
                          </h3>
-                         <div className="flex items-center gap-2 text-xs font-bold bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700">
-                           <span className="text-slate-500">Confidence: </span>
+                         <div className="flex items-center gap-2 text-xs font-bold bg-[#EFF6FF] dark:bg-[#18181B] px-3 py-1.5 rounded-lg border border-[#DCE3ED] dark:border-[#2A2D33]">
+                           <span className="text-[#94A3B8]">Confidence: </span>
                            <span className={research.confidence && research.confidence > 0.8 ? "text-[#2E9A47]" : "text-[#d97706]"}>
                              {research.confidence ? (research.confidence * 100).toFixed(0) : '?'}%
                            </span>
@@ -365,29 +377,29 @@ export function EmailCard({
                        </div>
 
                        {research.summary && (
-                         <div className="text-gray-900 dark:text-gray-200 font-semibold text-sm sm:text-[15px] leading-relaxed border-l-[3px] border-[#0066FF] pl-4 sm:pl-5 py-2 break-words">
+                         <div className="text-[#111827] dark:text-[#F5F5F5] font-semibold text-sm sm:text-[15px] leading-relaxed border-l-[3px] border-[#2563FF] pl-4 sm:pl-5 py-2 break-words">
                            {research.summary}
                          </div>
                        )}
 
                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                          {research.key_points && research.key_points.length > 0 && (
-                           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
+                           <div className="bg-white dark:bg-[#080808] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-xl p-5 shadow-sm">
                              <h4 className="text-xs font-black uppercase tracking-widest text-[#d97706] flex items-center gap-2 mb-4"><Lightbulb className="w-4 h-4"/> Key Takeaways</h4>
                              <ul className="space-y-3">
-                               {research.key_points.map((p, i) => <li key={i} className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-start gap-3"><span className="text-[#FCC30B] mt-0.5">•</span> <span>{p}</span></li>)}
+                               {research.key_points.map((p, i) => <li key={i} className="text-sm font-semibold text-[#64748B] dark:text-[#A1A1AA] flex items-start gap-3"><span className="text-[#FCC30B] mt-0.5">•</span> <span>{p}</span></li>)}
                              </ul>
                            </div>
                          )}
 
                          {research.important_dates && research.important_dates.length > 0 && (
-                           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
+                           <div className="bg-white dark:bg-[#080808] border border-[#DCE3ED] dark:border-[#2A2D33] rounded-xl p-5 shadow-sm">
                              <h4 className="text-xs font-black uppercase tracking-widest text-[#2E9A47] flex items-center gap-2 mb-4"><Clock className="w-4 h-4"/> Strict Deadlines</h4>
                              <div className="space-y-3">
                                {research.important_dates.map((d, i) => (
-                                 <div key={i} className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-lg p-3">
+                                 <div key={i} className="bg-[#F4F7FB] dark:bg-[#18181B]/50 border border-[#DCE3ED] dark:border-[#2A2D33]/50 rounded-lg p-3">
                                    <div className="font-extrabold text-[#2E9A47] mb-1">{d.date} {d.time}</div>
-                                   <div className="text-sm text-gray-700 dark:text-gray-300 font-semibold">{d.event}</div>
+                                   <div className="text-sm text-[#64748B] dark:text-[#A1A1AA] font-semibold">{d.event}</div>
                                  </div>
                                ))}
                              </div>
@@ -397,7 +409,7 @@ export function EmailCard({
 
                        <div className="flex flex-wrap gap-2 text-xs font-bold pt-2">
                          {research.people && research.people.map((p, i) => (
-                           <span key={i} className="px-3 py-1.5 bg-blue-50 dark:bg-[#0066FF]/10 text-blue-600 dark:text-[#0066FF] rounded-lg flex items-center gap-2 border border-blue-100 dark:border-[#0066FF]/20">
+                           <span key={i} className="px-3 py-1.5 bg-blue-50 dark:bg-[#2563FF]/10 text-blue-600 dark:text-[#2563FF] rounded-lg flex items-center gap-2 border border-blue-100 dark:border-[#2563FF]/20">
                              <Users className="w-3.5 h-3.5" /> {p.name} {p.role && <span className="opacity-70 font-medium">({p.role})</span>}
                            </span>
                          ))}
@@ -409,9 +421,9 @@ export function EmailCard({
                        </div>
                      </div>
                    ) : (
-                     <div className="flex flex-col items-center justify-center py-10 bg-slate-50 dark:bg-slate-900/30 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
-                        <p className="text-slate-500 font-bold mb-4">Research Agent data unavailable.</p>
-                        <button onClick={analyzeWithResearch} className="px-5 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-gray-900 dark:text-gray-100 font-bold rounded-lg transition-colors flex items-center gap-2 shadow-sm">
+                     <div className="flex flex-col items-center justify-center py-10 bg-[#F4F7FB] dark:bg-[#080808]/30 rounded-xl border border-dashed border-[#DCE3ED] dark:border-[#2A2D33]">
+                        <p className="text-[#94A3B8] font-bold mb-4">Research Agent data unavailable.</p>
+                        <button onClick={analyzeWithResearch} className="px-5 py-2.5 bg-white dark:bg-[#18181B] border border-[#DCE3ED] dark:border-[#2A2D33] hover:bg-[#F4F7FB] dark:hover:bg-[#1F2228] text-[#111827] dark:text-[#F5F5F5] font-bold rounded-lg transition-colors flex items-center gap-2 shadow-sm">
                           <RefreshCw className="w-4 h-4"/> Force Deep Dive
                         </button>
                      </div>
@@ -421,7 +433,7 @@ export function EmailCard({
             </div>
 
             {/* Modal Footer Actions */}
-            <div className="px-4 sm:px-6 py-4 sm:py-5 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#12182b] flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="px-4 sm:px-6 py-4 sm:py-5 border-t border-[#DCE3ED] dark:border-[#2A2D33] bg-[#F4F7FB] dark:bg-[#12182b] flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <button
                 onClick={addToCalendar}
                 disabled={calendarStatus === 'loading' || calendarStatus === 'done' || !research}
@@ -429,7 +441,7 @@ export function EmailCard({
                   'flex flex-1 sm:flex-none justify-center items-center space-x-2 px-4 sm:px-6 py-3 rounded-xl text-sm font-extrabold transition-all border shadow-sm',
                   calendarStatus === 'done' ? 'bg-[#2E9A47] text-white border-transparent' :
                   calendarStatus === 'error' ? 'bg-[#C5192D]/10 text-[#C5192D] border-[#C5192D]/30' :
-                  'bg-white dark:bg-slate-800 text-[#0066FF] border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50'
+                  'bg-white dark:bg-[#18181B] text-[#2563FF] border-[#DCE3ED] dark:border-[#2A2D33] hover:bg-[#F4F7FB] dark:hover:bg-[#1F2228] disabled:opacity-50'
                 )}
               >
                 {calendarStatus === 'loading' ? <Loader2 className="w-4 h-4 animate-spin flex-shrink-0" /> : <CalendarPlus className="w-4 h-4 flex-shrink-0" />}
@@ -439,7 +451,7 @@ export function EmailCard({
               {showMeetingTrigger && (
                 <button
                   onClick={() => onMeetingStart && onMeetingStart(email, research || undefined)}
-                  className="flex flex-1 sm:flex-none justify-center items-center space-x-2 px-4 sm:px-6 py-3 bg-[#0066FF] text-white hover:bg-blue-600 rounded-xl text-sm font-extrabold transition-colors shadow-md shadow-blue-500/20"
+                  className="flex flex-1 sm:flex-none justify-center items-center space-x-2 px-4 sm:px-6 py-3 bg-[#2563FF] text-white hover:bg-blue-600 rounded-xl text-sm font-extrabold transition-colors shadow-md shadow-blue-500/20"
                 >
                   <Cpu className="w-4 h-4 flex-shrink-0" />
                   <span className="truncate">Send to Meeting Bot</span>
