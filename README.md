@@ -8,15 +8,15 @@
 
 ## 1. Team Details
 
-**Team Name:** YOUR_TEAM_NAME
+**Team Name:** DarkElixir
 
-**Team Leader:** YOUR_NAME
+**Team Leader:** Dharani Vasan V
 
 **Team Members:**
-1. YOUR_NAME - Team Leader
-2. MEMBER_2
-3. MEMBER_3
-4. MEMBER_4
+1. Dharani Vasan V - Team Leader
+2. Maheswara Pandiyan A
+3. Sivaganesh B
+4. Santhosh A P
 
 ---
 
