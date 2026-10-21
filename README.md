@@ -1,475 +1,314 @@
 # OpteraAI
+### Autonomous Multi-Agent AI Productivity Platform
 
-## An Intelligent Multi-Agent AI Productivity Platform
+**One Dashboard. Multiple Intelligent Agents. Automated Workflows.**
 
-> One Dashboard. Multiple Intelligent Agents. Automated Workflows.
+OpteraAI is an AI-powered productivity platform designed to help students and professionals manage emails, documents, meetings, learning, career opportunities, applications, schedules, and daily tasks from one unified dashboard.
 
----
-
-## 1. Team Details
-
-**Team Name:** DarkElixir
-
-**Team Leader:** Dharani Vasan V
-
-**Team Members:**
-1. Dharani Vasan V - Team Leader
-2. Maheswara Pandiyan A
-3. Sivaganesh B
-4. Santhosh A P
+Instead of treating every activity as a separate task, OpteraAI connects specialized AI agents that process information, share relevant context, and coordinate workflows to help users move from receiving information to taking action.
 
 ---
 
-## 2. Problem Statement
+## Table of Contents
 
-Students and professionals receive a large amount of information through emails, meetings, internships, hackathons, certifications, scholarships, jobs, and academic opportunities.
-
-Managing this information manually requires users to read and categorize emails, identify important opportunities, prioritize deadlines, extract useful information, download and organize documents, attend and manage meetings, maintain resumes, search for additional information, apply to opportunities, manage calendars and reminders, and track learning and career progress.
-
-Because these activities are distributed across different platforms, users spend significant time on repetitive tasks and may miss important opportunities or deadlines.
-
-Existing productivity applications generally address individual tasks rather than providing an integrated system that can understand information and execute the required workflow automatically.
-
----
-
-## 3. Solution Overview
-
-OpteraAI is a unified multi-agent AI productivity platform that transforms unstructured information into intelligent, actionable workflows.
-
-After authenticating through Google OAuth, OpteraAI can synchronize the user's Gmail, classify incoming information, determine priority, extract important details, process documents, manage meetings, build a personal knowledge base, provide career and learning guidance, automate applications, manage calendars, deliver notifications, and generate productivity analytics.
-
-The platform uses specialized AI agents, with each agent responsible for a specific function while collaborating through APIs and a shared PostgreSQL database.
-
-All functionality is accessible through a single unified dashboard. Users do not need to switch between separate agent dashboards.
+- [Overview](#overview)
+- [Problem Statement](#problem-statement)
+- [Objectives](#objectives)
+- [Key Features](#key-features)
+- [AI Agent Ecosystem](#ai-agent-ecosystem)
+- [System Architecture](#system-architecture)
+- [How It Works](#how-it-works)
+- [Core Workflows](#core-workflows)
+- [Technology Stack](#technology-stack)
+- [Authentication and Security](#authentication-and-security)
+- [Getting Started](#getting-started)
+- [Environment Configuration](#environment-configuration)
+- [Running the Application](#running-the-application)
+- [Example Use Cases](#example-use-cases)
+- [Limitations](#limitations)
+- [Future Scope](#future-scope)
+- [Project Impact](#project-impact)
 
 ---
 
-## 4. System Workflow
+## Overview
 
-```text
-                         Google OAuth
-                              |
-                              v
-                     Unified Dashboard
-                              |
-                              v
-                       Watcher Agent
-                              |
-                              v
-                   Classification Agent
-                              |
-                              v
-                       Priority Agent
-                              |
-                              v
-                       Research Agent
-                              |
-              +---------------+---------------+
-              |               |               |
-              v               v               v
-        Search Agent    Document Agent   Meeting Agent
-              |               |               |
-              +---------------+---------------+
-                              |
-                              v
-                       Knowledge Agent
-                              |
-              +---------------+---------------+
-              |               |               |
-              v               v               v
-         Career Agent   Learning Agent    Resume Agent
-              |               |               |
-              +---------------+---------------+
-                              |
-                              v
-                    Application Agent
-                              |
-                              v
-                      Calendar Agent
-                              |
-                              v
-                   Notification Agent
-                              |
-                              v
-                     Analytics Agent
-                              |
-                              v
-                    Supervisor Agent
+Students and professionals regularly handle information from emails, documents, online meetings, internships, hackathons, scholarships, job opportunities, certifications, and academic activities.
+
+Managing these activities manually can lead to missed deadlines, repeated data entry, scattered information, and unnecessary effort.
+
+OpteraAI addresses this problem through a unified multi-agent system. Each agent specializes in a particular responsibility, while APIs and shared data allow relevant information to move between connected workflows.
+
+The platform aims to provide:
+
+- A single dashboard for productivity activities.
+- Intelligent email classification and prioritization.
+- Document processing and personal knowledge retrieval.
+- Context-aware career and learning assistance.
+- Meeting support and action-item extraction.
+- Automation for supported application forms.
+- Calendar management and personalized notifications.
+- Productivity analytics and agent monitoring.
+
+**Domain:** Artificial Intelligence and Machine Learning  
+**Application Area:** Productivity  
+**Architecture:** Multi-Agent AI System
+
+---
+
+## Problem Statement
+
+Users depend on several independent applications to manage their academic, professional, and personal productivity.
+
+This fragmented approach creates several challenges:
+
+- Important emails and opportunities can be overlooked.
+- Users must manually identify categories, priorities, and deadlines.
+- Information is scattered across documents, meetings, and online platforms.
+- Resume and profile information must often be entered repeatedly.
+- Meeting outcomes and follow-up tasks are difficult to track consistently.
+- Career, learning, scheduling, and application activities remain disconnected.
+- Switching between multiple tools increases the effort required to complete related tasks.
+
+### Proposed Solution
+
+OpteraAI brings these activities together through specialized AI agents and a unified dashboard. It processes incoming information, extracts relevant details, uses available personal context, and supports connected workflows with appropriate user authorization.
+
+---
+
+## Objectives
+
+- Consolidate important productivity functions into one dashboard.
+- Reduce repetitive information processing and manual data entry.
+- Convert emails, documents, and meetings into structured information and actionable tasks.
+- Reuse relevant personal context across knowledge, career, learning, and application workflows.
+- Coordinate agents to execute multi-step productivity tasks.
+- Improve deadline awareness through calendar integration and notifications.
+- Provide visibility into activity, workflow status, and productivity.
+
+---
+
+## Key Features
+
+### 1. Intelligent Email Processing
+
+The Watcher, Classification, and Priority Agents process incoming email information.
+
+- Synchronize supported Gmail data.
+- Identify new emails and relevant metadata.
+- Categorize emails by type.
+- Determine urgency and importance.
+- Identify deadlines, opportunities, and potential actions.
+- Forward relevant information to downstream agents.
+
+### 2. Automated Research and Information Extraction
+
+The Research and Search Agents help transform incomplete or unstructured information into usable details.
+
+- Extract important facts from incoming information.
+- Identify deadlines, requirements, links, and action items.
+- Search for additional information when needed.
+- Retrieve and validate relevant information from available sources.
+- Present structured findings through the unified dashboard.
+
+### 3. Document and Knowledge Management
+
+The Document and Knowledge Agents connect user documents with other productivity workflows.
+
+- Process supported PDF and DOCX files.
+- Extract text and document metadata.
+- Organize documents and attachments.
+- Index information for semantic retrieval.
+- Retrieve relevant context from personal documents.
+- Answer questions using available knowledge and retrieved context.
+
+### 4. Personalization and Career Assistance
+
+The Enrichment, Resume, Career, and Learning Agents support personalized workflows.
+
+- Use relevant profile and opportunity information.
+- Analyze resume content.
+- Identify skill gaps and potential development areas.
+- Recommend career paths, learning resources, and certifications.
+- Support resume customization for opportunities.
+- Help organize learning goals and career plans.
+
+### 5. Meeting Assistance
+
+The Meeting Agent supports authorized meeting workflows beyond basic transcription.
+
+- Process supported meeting links.
+- Capture or process meeting audio where configured.
+- Generate transcripts and summaries.
+- Extract action items and important discussion points.
+- Retrieve relevant personal context.
+- Generate responses using configured user information and instructions where supported.
+
+Meeting participation and responses depend on platform capabilities, permissions, user authorization, and the configured implementation.
+
+### 6. Application Automation
+
+The Application Agent reduces repeated form-filling work.
+
+- Use authorized profile and resume information.
+- Identify fields in supported application forms.
+- Map available information to relevant fields.
+- Populate supported forms.
+- Validate important information.
+- Track application status and follow-up actions.
+
+Application submission must respect website policies, user permissions, and applicable authorization requirements.
+
+### 7. Smart Scheduling and Notifications
+
+The Calendar and Notification Agents connect tasks, deadlines, and reminders.
+
+- Manage relevant events and deadlines.
+- Support meeting and task scheduling.
+- Create reminders for important activities.
+- Deliver dashboard or browser notifications where configured.
+- Provide notification history and preferences.
+- Support configurable notification sounds and quiet hours where implemented.
+
+### 8. Analytics and Workflow Monitoring
+
+The Analytics and Supervisor Agents provide visibility into system activity.
+
+- Track productivity-related activities.
+- Monitor workflow progress and agent status.
+- Identify execution errors.
+- Present activity metrics and reports.
+- Support coordination between specialized agents.
+
+---
+
+## AI Agent Ecosystem
+
+OpteraAI organizes its functionality into specialized roles.
+
+| Agent | Primary Responsibility |
+|---|---|
+| Watcher Agent | Monitor incoming information and supported events |
+| Classification Agent | Categorize emails and other information |
+| Priority Agent | Determine urgency and importance |
+| Research Agent | Extract structured findings and enrich information |
+| Search Agent | Search for relevant information and sources |
+| Document Agent | Process, classify, and manage documents |
+| Knowledge Agent | Retrieve personal knowledge using RAG |
+| Enrichment Agent | Add relevant context to profile and opportunity information |
+| Resume Agent | Manage, analyze, and customize resumes |
+| Meeting Agent | Support meetings, transcripts, summaries, and context-aware responses |
+| Career Agent | Provide career guidance and identify skill gaps |
+| Learning Agent | Create personalized learning plans |
+| Application Agent | Automate supported application workflows |
+| Calendar Agent | Manage events, deadlines, and schedules |
+| Notification Agent | Deliver reminders and alerts |
+| Analytics Agent | Track activity and generate productivity insights |
+| Supervisor Agent | Coordinate workflows and monitor agent status |
+
+The agents are designed to collaborate through structured task handoffs, APIs, and shared context rather than operating solely as isolated assistants.
+
+---
+
+## System Architecture
+
+OpteraAI follows a modular architecture consisting of a unified frontend, backend APIs, specialized agents, shared data, a personal knowledge layer, and external integrations.
+
+```mermaid
+flowchart TD
+    U[User] --> AUTH[Google OAuth]
+    AUTH --> UI[Unified Dashboard]
+
+    UI --> API[Backend API Layer]
+    API --> ORCH[Workflow Coordination]
+
+    ORCH --> W[Watcher Agent]
+    ORCH --> C[Classification Agent]
+    ORCH --> P[Priority Agent]
+    ORCH --> R[Research and Search Agents]
+
+    ORCH --> D[Document Agent]
+    D --> K[Knowledge Agent]
+    K --> E[Enrichment Agent]
+
+    E --> CAREER[Career and Learning Agents]
+    E --> RESUME[Resume Agent]
+
+    ORCH --> M[Meeting Agent]
+    ORCH --> APP[Application Agent]
+    ORCH --> CAL[Calendar Agent]
+    CAL --> N[Notification Agent]
+
+    W --> DB[(PostgreSQL)]
+    D --> DB
+    APP --> DB
+    CAL --> DB
+
+    K --> VDB[(ChromaDB)]
+    ORCH --> SUP[Supervisor Agent]
+    ORCH --> ANA[Analytics Agent]
+
+    API --> EXT[Gmail and External Integrations]
+    API --> AI[LLM and Embedding Services]
 ```
 
----
+### Architecture Components
 
-## 5. AI Agents
+**Frontend:** Provides the main user interface and access to integrated productivity modules.
 
-OpteraAI consists of 16 specialized AI agents.
+**Backend API Layer:** Handles application requests, business logic, authentication-related operations, and communication with services.
 
-| No. | Agent | Primary Responsibility |
-|---|---|---|
-| 1 | Watcher Agent | Monitors and synchronizes Gmail |
-| 2 | Classification Agent | Categorizes incoming emails and information |
-| 3 | Priority Agent | Determines importance and urgency |
-| 4 | Research Agent | Extracts structured information from unstructured content |
-| 5 | Search Agent | Searches and verifies information from online sources |
-| 6 | Document Agent | Downloads, processes, categorizes, and manages documents |
-| 7 | Knowledge Agent | Provides RAG-based personal knowledge retrieval |
-| 8 | Meeting Agent | Automates online meetings and generates transcripts |
-| 9 | Career Agent | Provides personalized career guidance |
-| 10 | Learning Agent | Creates personalized learning roadmaps |
-| 11 | Resume Agent | Manages and optimizes resumes |
-| 12 | Application Agent | Automates supported application forms |
-| 13 | Calendar Agent | Manages events, deadlines, and schedules |
-| 14 | Notification Agent | Delivers intelligent notifications and reminders |
-| 15 | Analytics Agent | Provides productivity and activity analytics |
-| 16 | Supervisor Agent | Monitors agent health and coordinates workflows |
+**Agent Layer:** Performs specialized tasks such as information processing, research, document handling, scheduling, and automation.
+
+**Coordination Layer:** Routes tasks and coordinates interactions between agents.
+
+**Data Layer:** Stores application information, user records, tasks, and workflow-related data in PostgreSQL.
+
+**Knowledge Layer:** Supports semantic retrieval of relevant information using embeddings and a vector database.
+
+**External Integrations:** Connects supported services such as Gmail, Google OAuth, and browser-based workflows.
 
 ---
 
-## 6. Agent Responsibilities
+## How It Works
 
-### 6.1 Watcher Agent
-
-The Watcher Agent continuously monitors the user's Gmail account.
-
-Responsibilities:
-- Gmail synchronization
-- Detect new emails
-- Retrieve email content
-- Retrieve email metadata
-- Detect attachments
-- Forward new information to downstream agents
-
-### 6.2 Classification Agent
-
-The Classification Agent identifies the type of incoming information.
-
-Example categories:
-- Internship
-- Hackathon
-- Job
-- Meeting
-- Certificate
-- Scholarship
-- Event
-- Bill
-- Academic information
-
-Responsibilities:
-- Email classification
-- Category detection
-- Classification confidence
-- Assign appropriate processing workflow
-
-### 6.3 Priority Agent
-
-The Priority Agent determines the urgency and importance of information.
-
-Priority levels:
-- Emergency
-- High
-- Medium
-- Low
-
-Responsibilities:
-- Deadline analysis
-- Urgency detection
-- Priority assignment
-- Priority scoring
-
-### 6.4 Research Agent
-
-The Research Agent converts unstructured information into structured information.
-
-It extracts:
-- Deadlines
-- Tasks
-- Meeting details
-- Application links
-- Contacts
-- Internship information
-- Hackathon information
-- Certificate information
-- Important instructions
-- Summaries
-
-### 6.5 Search Agent
-
-The Search Agent retrieves additional information when available information is incomplete.
-
-Responsibilities:
-- Search official websites
-- Verify information
-- Find missing details
-- Retrieve relevant URLs
-- Find downloadable resources
-- Provide additional context to the Research Agent
-
-### 6.6 Document Agent
-
-The Document Agent manages documents used throughout the platform.
-
-Responsibilities:
-- Download PDFs
-- Download certificates
-- Process email attachments
-- Extract text from documents
-- Process PDF and DOCX files
-- Categorize documents
-- Store document metadata
-- Detect duplicate documents
-- Maintain document history
-- Provide documents to other agents
-
-Primary consumers:
-- Knowledge Agent
-- Research Agent
-- Career Agent
-- Application Agent
-- Resume Agent
-
-### 6.7 Knowledge Agent
-
-The Knowledge Agent provides a personal RAG-based knowledge system.
-
-RAG pipeline:
+A typical information-to-action workflow follows these stages:
 
 ```text
-Documents / Information
-          |
-          v
-     Text Extraction
-          |
-          v
-    Vector Embeddings
-          |
-          v
-       ChromaDB
-          |
-          v
-       User Query
-          |
-          v
-    Query Embedding
-          |
-          v
-   Cosine Similarity
-          |
-          v
-       Top-K Results
-          |
-          v
-       Groq API
-          |
-          v
-      AI Response
+Incoming Information
+        |
+        v
+Understand and Extract
+        |
+        v
+Classify Information
+        |
+        v
+Determine Priority
+        |
+        v
+Research and Enrich
+        |
+        v
+Select the Appropriate Agent
+        |
+        v
+Execute an Authorized Action
+        |
+        v
+Schedule and Notify
+        |
+        v
+Track Activity and Results
 ```
 
-Responsibilities:
-- Generate embeddings
-- Store vectors
-- Perform semantic search
-- Retrieve relevant information
-- Generate contextual answers
-- Provide source references
-
-### 6.8 Meeting Agent
-
-The Meeting Agent automates online meeting workflows.
-
-Responsibilities:
-- Process meeting links
-- Join supported online meetings
-- Record meeting audio
-- Generate transcripts
-- Extract action items
-- Store meeting information
-- Provide meeting summaries
-
-### 6.9 Career Agent
-
-The Career Agent provides personalized career assistance.
-
-Responsibilities:
-- Resume analysis
-- Career-path recommendations
-- Skill-gap identification
-- Job recommendations
-- Internship recommendations
-- Certification recommendations
-- Career roadmap generation
-
-### 6.10 Learning Agent
-
-The Learning Agent creates personalized learning plans.
-
-Responsibilities:
-- Learning roadmaps
-- Course recommendations
-- Project recommendations
-- Certification recommendations
-- Skill development plans
-- Learning progress tracking
-
-### 6.11 Resume Agent
-
-The Resume Agent manages and optimizes user resumes.
-
-Responsibilities:
-- Master resume management
-- Resume updates
-- Resume versioning
-- Customized resumes
-- ATS-oriented optimization
-- Resume generation
-- Resume downloads
-
-### 6.12 Application Agent
-
-The Application Agent automates supported online application workflows.
-
-Supported platforms:
-- Google Forms
-- Microsoft Forms
-
-Workflow:
-
-```text
-Opportunity
-     |
-     v
-Application Link
-     |
-     v
-Application Agent
-     |
-     v
-User Profile + Resume
-     |
-     v
-Detect Form Fields
-     |
-     v
-Fill Required Fields
-     |
-     v
-Upload Documents
-     |
-     v
-Submit Application
-     |
-     v
-Store Application Status
-```
-
-The agent uses information already available in the user's profile and resume instead of requiring users to repeatedly enter the same information.
-
-### 6.13 Calendar Agent
-
-The Calendar Agent manages scheduling and deadlines.
-
-Responsibilities:
-- Create calendar events
-- Schedule meetings
-- Track deadlines
-- Detect scheduling conflicts
-- Create reminder schedules
-- Generate notification jobs
-- Update events
-
-### 6.14 Notification Agent
-
-The Notification Agent handles scheduled notifications.
-
-Features:
-- Browser notifications
-- Dashboard notifications
-- Custom notification sounds
-- Snooze
-- Quiet hours
-- Notification history
-- Delivery tracking
-- User notification preferences
-
-### 6.15 Analytics Agent
-
-The Analytics Agent provides productivity insights.
-
-Tracks:
-- Emails processed
-- Opportunities discovered
-- Applications submitted
-- Meetings
-- Learning progress
-- Notifications
-- Agent activity
-
-Provides:
-- Productivity dashboards
-- Reports
-- Statistics
-- Progress insights
-
-### 6.16 Supervisor Agent
-
-The Supervisor Agent monitors the overall multi-agent ecosystem.
-
-Responsibilities:
-- Monitor agent health
-- Track agent status
-- Detect failures
-- Monitor workflows
-- Track errors
-- Monitor service performance
-- Coordinate agent execution
+Not every input requires every stage. The relevant agents and steps depend on the type of information and the requested task.
 
 ---
 
-## 7. Unified Dashboard
+## Core Workflows
 
-OpteraAI provides a single unified dashboard for all agent functionality.
-
-Users never need to open separate agent dashboards.
-
-Dashboard modules:
-
-1. Home
-2. Inbox
-3. Opportunities
-4. Documents
-5. Calendar
-6. Meetings
-7. Knowledge
-8. Career
-9. Learning
-10. Resume
-11. Applications
-12. Notifications
-13. Analytics
-14. AI Agents
-15. Settings
-
-The unified dashboard provides:
-
-- Gmail activity
-- Email classifications
-- Priority information
-- Extracted opportunities
-- Document management
-- Meeting information
-- Personal knowledge search
-- Career recommendations
-- Learning roadmaps
-- Resume management
-- Application automation
-- Calendar events
-- Notifications
-- Productivity analytics
-- Agent health monitoring
-
----
-
-## 8. Example End-to-End Workflow
-
-When an internship email arrives:
+### Workflow 1: Internship Opportunity
 
 ```text
 Gmail
@@ -480,313 +319,397 @@ Watcher Agent
   v
 Classification Agent
   |
-  |--> Internship
-  |
   v
 Priority Agent
-  |
-  |--> High Priority
   |
   v
 Research Agent
   |
-  +--> Company
-  +--> Role
+  +--> Company and Role
+  +--> Eligibility and Skills
   +--> Deadline
-  +--> Skills
-  +--> Application URL
+  +--> Application Link
   |
-  +----------------------+
-  |                      |
-  v                      v
-Search Agent         Document Agent
-  |                      |
-  v                      v
-Verify Details       Process Files
-  |                      |
-  +----------+-----------+
-             |
-             v
-      Unified Dashboard
-             |
-             v
-      Application Agent
-             |
-             v
-         Auto Fill
-             |
-             v
-          Submit
-             |
-             v
-       Calendar Agent
-             |
-             v
-     Notification Agent
-             |
-             v
-       Analytics Agent
-```
-
----
-
-## 9. Technology Stack
-
-### 9.1 Frontend
-
-- React.js
-- Vite
-- TypeScript
-- Tailwind CSS
-- shadcn/ui
-- Lucide React
-- Framer Motion
-- Recharts
-- Zustand
-
-### 9.2 Backend
-
-- Python
-- FastAPI
-- Pydantic
-- SQLAlchemy
-- Uvicorn
-- APScheduler
-
-### 9.3 Database
-
-- PostgreSQL
-- Render PostgreSQL
-
-### 9.4 AI and RAG
-
-- Groq API
-- Sentence Transformers
-- Vector Embeddings
-- Retrieval-Augmented Generation
-- Cosine Similarity
-- ChromaDB
-
-### 9.5 Automation
-
-- Playwright
-
-### 9.6 Meeting Processing
-
-- Whisper
-- FFmpeg
-- Playwright
-
-### 9.7 Document Processing
-
-- PyMuPDF
-- pdfplumber
-- python-docx
-- OCR where required
-
-### 9.8 Authentication and Integration
-
-- Google OAuth
-- JWT
-- Gmail API
-
-### 9.9 Deployment
-
-- Render
-
----
-
-## 10. Authentication
-
-OpteraAI uses Google OAuth authentication.
-
-Login workflow:
-
-```text
-Google OAuth
-     |
-     v
-User Authentication
-     |
-     v
-Create / Retrieve User
-     |
-     v
-Session / JWT
-     |
-     v
+  v
 Unified Dashboard
+  |
+  v
+Resume and Application Agents
+  |
+  v
+Calendar and Notification Agents
+  |
+  v
+Analytics
 ```
 
-After successful authentication, the user is taken directly to the unified dashboard.
+**Result:** Relevant opportunity information can be organized, researched, and connected to application preparation and deadline tracking.
+
+### Workflow 2: Personal Knowledge Retrieval
+
+```text
+Document Upload
+      |
+      v
+Text Extraction
+      |
+      v
+Content Chunking
+      |
+      v
+Embedding Generation
+      |
+      v
+ChromaDB Vector Store
+      |
+      v
+User Query
+      |
+      v
+Semantic Retrieval
+      |
+      v
+Relevant Context
+      |
+      v
+AI-Generated Answer
+```
+
+**Result:** Users can retrieve information from their own supported documents instead of searching through files manually.
+
+### Workflow 3: Meeting Assistance
+
+```text
+Authorized Meeting
+        |
+        v
+Audio or Meeting Content
+        |
+        v
+Speech Processing
+        |
+        v
+Context Retrieval
+        |
+        v
+Question and Topic Analysis
+        |
+        v
+Context-Aware Response
+        |
+        v
+Meeting Summary and Action Items
+```
+
+Meeting participation, audio processing, and responses depend on the configured services and permissions.
+
+### Workflow 4: Application Automation
+
+```text
+Opportunity
+     |
+     v
+Application Link
+     |
+     v
+Read Authorized Profile and Resume
+     |
+     v
+Identify Supported Form Fields
+     |
+     v
+Map and Populate Information
+     |
+     v
+Validate Fields
+     |
+     v
+User Authorization, When Required
+     |
+     v
+Submit Supported Form
+     |
+     v
+Record Application Status
+```
 
 ---
 
-## 11. Database
+## Technology Stack
 
-PostgreSQL is used as the central relational database for application data.
-
-The database manages information such as:
-
-- Users
-- Gmail accounts
-- Emails
-- Classifications
-- Priorities
-- Research results
-- Documents
-- Meetings
-- Resumes
-- Applications
-- Calendar events
-- Notification jobs
-- Notification history
-- Career data
-- Learning progress
-- Analytics
-
-The vector knowledge layer is handled separately using ChromaDB.
-
----
-
-## 12. Live Demonstration
-
-**Live Demo:** YOUR_LIVE_DEMO_LINK
-
----
-
-## 13. Setup Instructions
-
-Setup instructions will be added by the team.
-
-This section will include:
-
-- Repository cloning
-- Environment variable configuration
-- Google OAuth configuration
-- PostgreSQL configuration
-- Backend installation
-- Frontend installation
-- AI API configuration
-- ChromaDB configuration
-- Playwright installation
-- Local development
-- Production deployment
-
----
-
-## 14. Team Members
-
-| Role | Name |
+| Area | Technologies |
 |---|---|
-| Team Leader | YOUR_NAME |
-| Team Member | MEMBER_2 |
-| Team Member | MEMBER_3 |
-| Team Member | MEMBER_4 |
+| Frontend | React.js, Vite, TypeScript, Tailwind CSS |
+| UI Components | shadcn/ui, Lucide React |
+| State and Animation | Zustand, Framer Motion |
+| Data Visualization | Recharts |
+| Backend | Python, FastAPI, Pydantic, SQLAlchemy, Uvicorn |
+| Database | PostgreSQL |
+| AI Services | Groq API, Gemini API |
+| Embeddings | Sentence Transformers |
+| Retrieval-Augmented Generation | ChromaDB, vector embeddings, cosine similarity |
+| Browser Automation | Playwright |
+| Meeting Processing | Whisper, FFmpeg |
+| Document Processing | PyMuPDF, pdfplumber, python-docx, OCR where required |
+| Authentication | Google OAuth, JWT |
+| Email Integration | Gmail API |
+| Scheduling | APScheduler |
+| Deployment | Render, subject to environment configuration |
 
 ---
 
-## 15. Project Impact
+## Authentication and Security
 
-OpteraAI aims to reduce the repetitive work required to manage academic and professional opportunities.
+OpteraAI is designed to use Google OAuth for supported account authentication and integrations.
 
-Traditional workflow:
+Important security considerations include:
 
-```text
-Read -> Understand -> Prioritize -> Organize -> Apply -> Schedule -> Remember
+- Keep API keys, passwords, and OAuth credentials in environment variables.
+- Never commit `.env` files or secret credentials to GitHub.
+- Use `.env.example` to document required configuration without exposing real secrets.
+- Restrict access to user-specific information.
+- Validate data before performing consequential actions.
+- Enforce appropriate user authorization for external submissions and meeting participation.
+- Handle personal documents and profile data carefully.
+- Record important workflow events where logging is configured.
+
+AI-generated output should be reviewed where incorrect actions could have significant consequences.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+Install the following before running OpteraAI:
+
+- Python 3.10 or later.
+- Node.js version compatible with the installed Vite release.
+- PostgreSQL, locally or through a hosted database.
+- Git.
+- Required API credentials for the features you intend to use.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/DharaniVasanV/OpteraAI.git
+cd OpteraAI
 ```
 
-OpteraAI workflow:
+### 2. Create a Python Virtual Environment
 
-```text
-Receive
-   |
-   v
-Understand
-   |
-   v
-Prioritize
-   |
-   v
-Extract
-   |
-   v
-Organize
-   |
-   v
-Act
-   |
-   v
-Notify
-   |
-   v
-Track
+**Windows PowerShell**
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
 ```
 
-This helps users spend less time on administrative work and more time on learning, career development, and meaningful work.
+If PowerShell blocks script execution, activate the environment using an appropriate permitted method for your system.
 
----
+**Linux or macOS**
 
-## 16. Future Scope
-
-Potential future improvements include:
-
-1. Mobile application
-2. Additional email providers
-3. Additional meeting platforms
-4. More application platforms
-5. Advanced agent orchestration
-6. Mobile push notifications
-7. Multi-language support
-8. Enterprise deployment
-9. Advanced career matching
-10. Personalized workflow automation
-
----
-
-## 17. License
-
-Add the project's license here.
-
-Example:
-
-```text
-MIT License
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
+### 3. Install Backend Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Install Playwright Chromium
+
+```bash
+playwright install chromium
+```
+
+Chromium is required for configured browser automation and supported meeting workflows.
+
+### 5. Configure Environment Variables
+
+Create your local environment file from the example:
+
+**Windows PowerShell**
+
+```powershell
+Copy-Item .env.example .env
+```
+
+**Linux or macOS**
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and provide the credentials required by your configuration.
+
+### 6. Install Frontend Dependencies
+
+```bash
+cd frontend
+npm install
+cd ..
+```
+
+### 7. Start the Application
+
+**Windows PowerShell**
+
+```powershell
+.\start_all.ps1
+```
+
+**Linux or macOS**
+
+```bash
+chmod +x start_all.sh
+./start_all.sh
+```
+
+The startup scripts are intended to launch the configured backend services and unified frontend together.
+
 ---
 
-## 18. Acknowledgements
+## Environment Configuration
 
-OpteraAI is built using open-source technologies and services including:
+Use `.env.example` as the source of truth for the exact environment variable names required by the project.
 
-- Python
-- FastAPI
-- React
-- PostgreSQL
-- Playwright
-- ChromaDB
-- Sentence Transformers
-- Whisper
-- Groq API
-- Google APIs
+A sample configuration may include:
+
+```env
+DATABASE_URL=postgresql+asyncpg://<user>:<password>@localhost:5432/<db_name>
+
+GROQ_API_KEY=your_groq_api_key
+GROQ_API_KEY2=your_groq_api_key_2
+GROQ_API_KEY3=your_groq_api_key_3
+
+GEMINI_API_KEY=your_gemini_api_key
+
+SMTP_USER=your_smtp_user
+SMTP_PASSWORD=your_smtp_password
+```
+
+Configure the Gmail OAuth credentials and any other integration settings listed in `.env.example`.
+
+**Important:**
+
+- Replace all example values with your own credentials.
+- Do not publish real keys, passwords, OAuth tokens, or database credentials.
+- Multiple Groq keys should be configured only if supported by the application's key-rotation logic.
+- Ensure the PostgreSQL database exists and is accessible before starting the application.
+- Some features may remain unavailable until their external integrations are configured.
 
 ---
 
-## 19. Project Objective
+## Running the Application
 
-The primary objective of OpteraAI is to transform scattered academic and professional information into automated, actionable workflows.
+Once the configured startup script completes, the documented local endpoints are:
 
-The platform combines specialized AI agents, automation, information extraction, document processing, RAG-based knowledge retrieval, scheduling, application automation, and analytics into one unified productivity platform.
+| Service | URL |
+|---|---|
+| Unified Dashboard | `http://localhost:3000` |
+| Central API Documentation | `http://127.0.0.1:9000/docs` |
+
+These addresses assume the startup scripts use the ports described in the project configuration. If your local settings differ, use the ports displayed in the startup logs.
+
+The API documentation page can help developers inspect and test the available backend endpoints.
 
 ---
 
-## 20. Conclusion
+## Example Use Cases
 
-OpteraAI provides a unified approach to managing academic and professional activities through specialized AI agents. By connecting email intelligence, opportunity discovery, document processing, meetings, knowledge management, career development, learning, applications, scheduling, notifications, and analytics, the platform reduces repetitive work and enables users to manage their workflows from a single interface.
+### Students
+
+Manage academic documents, learning plans, meetings, internship opportunities, hackathons, deadlines, and reminders from a single platform.
+
+### Job Seekers
+
+Research career opportunities, organize resumes, prepare supported applications, and track application deadlines and follow-up actions.
+
+### Working Professionals
+
+Organize incoming information, prepare for meetings, retrieve personal knowledge, and manage schedules and tasks.
+
+### Knowledge Workers
+
+Search personal documents, connect research results with ongoing work, and reduce the effort required to locate relevant information.
 
 ---
 
-# OpteraAI
+## What Makes OpteraAI Different?
 
-**One Dashboard. Multiple Intelligent Agents. Automated Workflows.**
+OpteraAI focuses on connecting productivity tasks rather than providing isolated AI features.
+
+### One Dashboard
+
+Access integrated productivity modules through a unified interface instead of navigating between separate agent dashboards.
+
+### Shared Context
+
+Allow relevant information from documents, profiles, meetings, and opportunities to support connected workflows.
+
+### Coordinated Workflows
+
+Connect information processing, research, applications, scheduling, and notifications through agent-to-agent task handoffs.
+
+### From Information to Action
+
+Support workflows that turn incoming information into structured results and authorized actions, rather than stopping at summaries or suggestions.
+
+### Personal Productivity
+
+Bring learning, career development, knowledge management, and day-to-day productivity into one platform.
+
+---
+
+## Limitations
+
+- External APIs may enforce rate limits, quotas, or access restrictions.
+- Browser automation can depend on changes to website layouts and form structures.
+- Meeting participation varies by platform, permissions, and integration support.
+- AI-generated responses may contain errors and require validation.
+- Application automation is limited to supported workflows.
+- Performance depends on model availability, database configuration, and system resources.
+- Security and privacy depend on proper configuration, access controls, and credential management.
+
+---
+
+## Future Scope
+
+Potential improvements include:
+
+- Mobile application and push notifications.
+- Support for additional email and calendar services.
+- Additional meeting platforms.
+- Expanded application portal integrations.
+- Improved personal memory and knowledge retrieval.
+- Multilingual interactions.
+- Advanced voice-based workflows.
+- More sophisticated agent orchestration.
+- Improved productivity analytics and recommendations.
+- Scalable deployment for more users and workflows.
+
+---
+
+## Project Impact
+
+OpteraAI aims to reduce the time spent on repetitive digital activities such as sorting emails, searching through documents, preparing applications, managing deadlines, and tracking follow-up actions.
+
+By connecting information processing with personal context and workflow automation, the platform seeks to help students and professionals focus more on learning, career development, and productive work.
+
+The intended workflow is:
+
+**Receive → Understand → Prioritize → Research → Organize → Act → Notify → Track**
+
+---
+
+## Conclusion
+
+OpteraAI presents a unified approach to AI-assisted productivity by combining specialized agents, shared context, information retrieval, and workflow automation in one platform.
+
+Its central goal is to transform scattered information into useful insights and coordinated actions, while keeping users in control of important decisions and external operations.
+
+**OpteraAI: One Dashboard. Multiple Intelligent Agents. Automated Workflows.**
